@@ -5,11 +5,17 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
-concurrency: { group: data, cancel-in-progress: false }
+  actions: write
 jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - name: 取消卡住的舊探索
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          for id in $(gh run list -R "$GITHUB_REPOSITORY" -w explore -s in_progress --json databaseId -q '.[].databaseId'); do
+            [ "$id" != "$GITHUB_RUN_ID" ] && gh run cancel "$id" -R "$GITHUB_REPOSITORY" || true
+          done
       - uses: actions/checkout@v4
       - run: python3 scripts/explore.py
       - run: |

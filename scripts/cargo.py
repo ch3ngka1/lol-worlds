@@ -1,14 +1,16 @@
-"""Leaguepedia Cargo 查詢小工具：放慢速度、遇到限流自動等待重試。"""
+"""Leaguepedia 資料抓取：用 Special:CargoExport（匯出頁），放慢速度、失敗自動重試。
+資料授權：Leaguepedia（Fandom）文字內容 CC BY-SA 3.0。"""
 import json, time, urllib.parse, urllib.request
 
-API = "https://lol.fandom.com/api.php"
+EXPORT = "https://lol.fandom.com/wiki/Special:CargoExport"
 UA = "lol-worlds-fan-site/1.0 (https://github.com/ch3ngka1/lol-worlds)"
-GAP = 12          # 每次請求至少間隔秒數
+GAP = 4
 _last = [0.0]
 
 def _get(params):
-    url = API + "?" + urllib.parse.urlencode(params)
-    for attempt in range(8):
+    url = EXPORT + "?" + urllib.parse.urlencode(params)
+    last_err = None
+    for attempt in range(6):
         wait = GAP - (time.time() - _last[0])
         if wait > 0:
             time.sleep(wait)
@@ -17,27 +19,25 @@ def _get(params):
             req = urllib.request.Request(url, headers={"User-Agent": UA})
             with urllib.request.urlopen(req, timeout=60) as r:
                 data = json.load(r)
-        except Exception as e:  # 網路錯誤
-            data = {"error": {"code": "net", "info": str(e)}}
-        err = data.get("error")
-        if not err:
-            return data
-        backoff = min(30 * (2 ** attempt), 300)
-        print(f"  ! {err.get('code')} -> 等 {backoff}s 再試", flush=True)
+            if isinstance(data, list):
+                return data
+            last_err = str(data)[:300]
+        except Exception as e:
+            last_err = str(e)
+        backoff = min(20 * (2 ** attempt), 240)
+        print(f"  ! {last_err} -> 等 {backoff}s 再試", flush=True)
         time.sleep(backoff)
-    raise RuntimeError("Leaguepedia 一直限流或錯誤，放棄這次")
+    raise RuntimeError("Leaguepedia 匯出失敗：" + str(last_err))
 
 def cargo(tables, fields, where="", join_on="", order_by="", group_by="", page=500, max_rows=20000):
     rows, offset = [], 0
     while True:
-        p = {"action": "cargoquery", "format": "json", "tables": tables, "fields": fields,
-             "limit": page, "offset": offset}
+        p = {"tables": tables, "fields": fields, "limit": page, "offset": offset, "format": "json"}
         if where: p["where"] = where
-        if join_on: p["join_on"] = join_on
-        if order_by: p["order_by"] = order_by
-        if group_by: p["group_by"] = group_by
-        data = _get(p)
-        batch = [x["title"] for x in data.get("cargoquery", [])]
+        if join_on: p["join on"] = join_on
+        if order_by: p["order by"] = order_by
+        if group_by: p["group by"] = group_by
+        batch = _get(p)
         rows += batch
         if len(batch) < page or len(rows) >= max_rows:
             return rows
