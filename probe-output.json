@@ -1,0 +1,93 @@
+{
+ "ScoreboardGames": "Traceback (most recent call last):\n  File \"/home/runner/work/lol-worlds/lol-worlds/scripts/probe_fields.py\", line 11, in <module>\n    h = urllib.request.urlopen(req, timeout=60).read().decode()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 521, in open\n    response = meth(req, response)\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 630, in http_response\n    response = self.parent.error(\n               ^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 559, in error\n    return self._call_chain(*args)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 639, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: Forbidden\n",
+ "ScoreboardPlayers": "Traceback (most recent call last):\n  File \"/home/runner/work/lol-worlds/lol-worlds/scripts/probe_fields.py\", line 11, in <module>\n    h = urllib.request.urlopen(req, timeout=60).read().decode()\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 215, in urlopen\n    return opener.open(url, data, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 521, in open\n    response = meth(req, response)\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 630, in http_response\n    response = self.parent.error(\n               ^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 559, in error\n    return self._call_chain(*args)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 492, in _call_chain\n    result = func(*args)\n             ^^^^^^^^^^^\n  File \"/usr/lib/python3.12/urllib/request.py\", line 639, in http_error_default\n    raise HTTPError(req.full_url, code, msg, hdrs, fp)\nurllib.error.HTTPError: HTTP Error 403: Forbidden\n",
+ "sample": [
+  {
+   "GameId": "2026 Season World Championship/Play-In_Round 1_1_1",
+   "MatchId": "2026 Season World Championship/Play-In_Round 1_1",
+   "Team1": "Karmine Corp",
+   "Team2": "Cloud9",
+   "WinTeam": "Cloud9",
+   "Team1Players": [
+    "Canna",
+    "Yike",
+    "kyeahoo",
+    "Caliste",
+    "Busio"
+   ],
+   "Team2Players": [
+    "Thanatos (Park Seung-kyu)",
+    "Blaber",
+    "Loki (Lee Sang-min)",
+    "Tactical",
+    "Vulcan (Philippe Laflamme)"
+   ],
+   "Team1Gold": 57395,
+   "Team2Gold": 75994,
+   "Gamelength Number": 35.033333333333,
+   "Patch": 26.2,
+   "N GameInMatch": 1,
+   "DateTime UTC": "2026-10-15 18:16:00",
+   "OverviewPage": "2026 Season World Championship/Play-In",
+   "DateTime UTC__precision": 0
+  },
+  {
+   "GameId": "2026 Season World Championship/Play-In_Round 1_1_2",
+   "MatchId": "2026 Season World Championship/Play-In_Round 1_1",
+   "Team1": "Cloud9",
+   "Team2": "Karmine Corp",
+   "WinTeam": "Karmine Corp",
+   "Team1Players": [
+    "Thanatos (Park Seung-kyu)",
+    "Blaber",
+    "Loki (Lee Sang-min)",
+    "Tactical",
+    "Vulcan (Philippe Laflamme)"
+   ],
+   "Team2Players": [
+    "Canna",
+    "Yike",
+    "kyeahoo",
+    "Caliste",
+    "Busio"
+   ],
+   "Team1Gold": 66356,
+   "Team2Gold": 68978,
+   "Gamelength Number": 35.166666666667,
+   "Patch": 26.2,
+   "N GameInMatch": 2,
+   "DateTime UTC": "2026-10-15 19:15:00",
+   "OverviewPage": "2026 Season World Championship/Play-In",
+   "DateTime UTC__precision": 0
+  },
+  {
+   "GameId": "2026 Season World Championship/Play-In_Round 1_1_3",
+   "MatchId": "2026 Season World Championship/Play-In_Round 1_1",
+   "Team1": "Karmine Corp",
+   "Team2": "Cloud9",
+   "WinTeam": "Cloud9",
+   "Team1Players": [
+    "Canna",
+    "Yike",
+    "kyeahoo",
+    "Caliste",
+    "Busio"
+   ],
+   "Team2Players": [
+    "Thanatos (Park Seung-kyu)",
+    "Blaber",
+    "Loki (Lee Sang-min)",
+    "Tactical",
+    "Vulcan (Philippe Laflamme)"
+   ],
+   "Team1Gold": 64718,
+   "Team2Gold": 78765,
+   "Gamelength Number": 37.816666666667,
+   "Patch": 26.2,
+   "N GameInMatch": 3,
+   "DateTime UTC": "2026-10-15 20:17:00",
+   "OverviewPage": "2026 Season World Championship/Play-In",
+   "DateTime UTC__precision": 0
+  }
+ ]
+}
