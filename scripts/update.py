@@ -13,7 +13,20 @@ def fetch_live():
         where=f'OverviewPage LIKE "{WORLDS}%"', order_by="DateTime_UTC", page=500)
     players = cargo("TournamentPlayers", "Team,Link,Role,OverviewPage",
         where=f'OverviewPage LIKE "{WORLDS}%"', page=500)
-    return sched, players
+    from build_games import FIELDS, compact
+    live_games = compact(cargo("ScoreboardGames", FIELDS, where=f'OverviewPage LIKE "{WORLDS}%"',
+                               order_by="DateTime_UTC", page=500))
+    return sched, players, live_games
+
+def load_games(live):
+    """data/games.json（2023 起每局）＋ 本屆世界賽即時每局資料，依 GameId 去重。"""
+    path = os.path.join(DATA, "games.json")
+    G = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {"cols": [], "games": []}
+    cols = G["cols"] or ["id", "match", "ov", "dt", "t1", "t2", "c1", "c2", "win", "p1", "p2", "g1", "g2", "len", "patch"]
+    rows = {g[0]: g for g in G["games"]}
+    for g in live or []:
+        rows[g[0]] = g
+    return [dict(zip(cols, g)) for g in rows.values()]
 
 def build_schedule(rows, name2code):
     out = []
@@ -58,13 +71,11 @@ def build_rosters(rows, name2code):
 
 def main(offline=None):
     teams, name2code = load_teams()
-    sched_rows, player_rows = offline or fetch_live()
+    sched_rows, player_rows, live_games = offline or fetch_live()
     schedule = build_schedule(sched_rows, name2code)
     rosters = build_rosters(player_rows, name2code)
     history = json.load(open(os.path.join(DATA, "history.json"), encoding="utf-8"))["series"]
-    dom_path = os.path.join(DATA, "domestic.json")
-    domestic = json.load(open(dom_path, encoding="utf-8"))["series"] if os.path.exists(dom_path) else []
-    ratings = compute_ratings(teams, history, schedule, domestic)
+    ratings = compute_ratings(teams, history, load_games(live_games), rosters)
     changed = False
     changed |= write_json("schedule.json", {"matches": schedule})
     changed |= write_json("rosters.json", rosters)

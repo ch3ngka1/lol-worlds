@@ -91,20 +91,20 @@
   }
 
   /* ---------- 勝率參考 ---------- */
-  function predict(a, b) {
+  function seriesProb(p, bo) {           // 單局勝率 → 系列賽勝率
+    const need = Math.floor((bo || 1) / 2) + 1;
+    let tot = 0, c = 1;
+    for (let j = 0; j < need; j++) {
+      if (j > 0) c = c * (need - 1 + j) / j;      // 組合數 C(need-1+j, j)
+      tot += c * Math.pow(p, need) * Math.pow(1 - p, j);
+    }
+    return tot;
+  }
+  function predict(a, b, bo) {
     const ra = D.ratings.teams[a].elo, rb = D.ratings.teams[b].elo;
-    const base = 1 / (1 + Math.pow(10, (rb - ra) / 400));
-    const now = Date.now();
-    let net = 0, tot = 0;
-    headToHead(a, b).rows.forEach((s) => {
-      const years = (now - Date.parse(s.date)) / (365.25 * 864e5);
-      const w = Math.pow(0.5, years / 2);       // 每 2 年權重減半
-      const aWon = (s.w === 1) === (s.c1 === a);
-      net += aWon ? w : -w; tot += w;
-    });
-    const adj = 0.12 * net / (tot + 2);           // 最多約 ±12%，交手越少影響越小
-    const p = Math.min(0.95, Math.max(0.05, base + adj));
-    return { p, base, adj, ra, rb };
+    const game = 1 / (1 + Math.pow(10, (rb - ra) / 400));
+    const p = Math.min(0.97, Math.max(0.03, seriesProb(game, bo)));
+    return { p, game, ra, rb };
   }
 
   /* ---------- 共用片段 ---------- */
@@ -124,7 +124,7 @@
       : `<div class="score"><span class="vs">vs</span><small>Bo${m.bo}</small></div>`;
     let extra = "";
     if (!done && known(m)) {
-      const p = predict(m.c1, m.c2).p;
+      const p = predict(m.c1, m.c2, m.bo).p;
       extra = `<div class="mini-bar"><span class="num">${pct(p)}%</span>
         <span class="bar" style="--lg-a:var(--${team(m.c1).league.toLowerCase()});--lg-b:var(--${team(m.c2).league.toLowerCase()})" aria-hidden="true">
         <span class="a" style="width:${pct(p)}%"></span><span class="b" style="width:${100 - pct(p)}%"></span></span>
@@ -176,8 +176,14 @@
   function rosterHTML(code) {
     const t = team(code), r = D.rosters[code];
     if (!r) return `<div class="panel roster"><h3>${esc(code)}</h3><p class="muted">還沒有名單資料。</p></div>`;
-    const rows = r.players.map((p) => `<tr><th scope="row">${ROLE[p.role] || esc(p.role)}</th>
-      <td><a href="https://lol.fandom.com/wiki/${encodeURIComponent(p.page.replace(/ /g, "_"))}" rel="noopener">${esc(p.name)}</a></td></tr>`).join("");
+    const lu = (D.ratings.teams[code] && D.ratings.teams[code].lineup) || [];
+    const norm = (x) => String(x).split(" (")[0].toLowerCase();
+    const rows = r.players.map((p) => {
+      const hit = lu.find((x) => norm(x.name) === norm(p.name));
+      return `<tr><th scope="row">${ROLE[p.role] || esc(p.role)}</th>
+      <td><a href="https://lol.fandom.com/wiki/${encodeURIComponent(p.page.replace(/ /g, "_"))}" rel="noopener">${esc(p.name)}</a>${hit ? "" : ' <span class="muted" style="font-size:12px">替補</span>'}</td>
+      <td class="num" style="text-align:right;color:var(--ink-3)">${hit ? Math.round(hit.elo) : ""}</td></tr>`;
+    }).join("");
     const staff = r.staff.length ? `<p class="staff">教練團：${r.staff.map((s) => esc(s.name)).join("、")}</p>` : "";
     return `<div class="panel roster"><h3><span class="dot ${lgClass(code)}" aria-hidden="true"></span>${esc(code)}<span class="muted" style="font-weight:400;font-size:13px">${esc(t.name)}</span></h3>
       <table>${rows}</table>${staff}</div>`;
@@ -208,8 +214,8 @@
       probBlock = `<div class="panel"><p style="margin:0">這場已經打完，由 <b>${esc(winner)}</b> 以 ${Math.max(m.s1, m.s2)}:${Math.min(m.s1, m.s2)} 獲勝。</p>
         <p class="note">打完的比賽不再顯示勝率，因為實力分數已經把這場結果算進去了。</p></div>`;
     } else {
-      const P = predict(a, b);
-      const adjTxt = Math.abs(P.adj) < 0.005 ? "無明顯影響" : `${P.adj > 0 ? a : b} +${Math.abs(pct(P.adj))}%`;
+      const P = predict(a, b, m.bo);
+      const lu = (c) => (D.ratings.teams[c].lineup || []).map((x) => esc(x.name)).join("、");
       const fa = worldsRecord(a), fb = worldsRecord(b);
       probBlock = `<div class="panel">
         <div class="prob-row" style="--lg-a:var(--${A.league.toLowerCase()});--lg-b:var(--${B.league.toLowerCase()})">
@@ -220,10 +226,12 @@
         <div class="prob-labels"><span>${esc(a)} 勝</span><span>${esc(b)} 勝</span></div>
         <p class="sr-only">勝率參考：${esc(a)} ${pct(P.p)}%，${esc(b)} ${100 - pct(P.p)}%</p>
         <ul class="factors">
-          <li><b>實力分數</b><span class="val">${Math.round(P.ra)} : ${Math.round(P.rb)}</span>
-            <span class="why">依兩隊（含前身隊名）在國際賽（世界賽、MSI、First Stand、電競世界盃）與 2023 年起所屬聯賽的系列賽勝負計算，本屆結果也會即時算進去。只看這項是 ${esc(a)} ${pct(P.base)}%。${ra.intlSeries < 10 || rb.intlSeries < 10 ? "其中一隊國際賽經驗少，跨賽區的強弱主要靠同賽區其他隊伍的國際賽成績推估，誤差較大。" : ""}</span></li>
-          <li><b>過去交手修正</b><span class="val">${esc(adjTxt)}</span>
-            <span class="why">${h.rows.length ? `${h.rows.length} 次交手，越久以前的比賽影響越小（每 2 年減半）。` : "兩隊從未在國際賽交手，不做修正。"}</span></li>
+          <li><b>實力分數（五名選手平均）</b><span class="val">${Math.round(P.ra)} : ${Math.round(P.rb)}</span>
+            <span class="why">每位選手依 2023 年起每一局國際賽與聯賽的勝負累積分數，換人、轉隊時分數跟著選手走。預計陣容：${esc(a)} ${lu(a)}；${esc(b)} ${lu(b)}。</span></li>
+          <li><b>換算成 Bo${m.bo}</b><span class="val">單局 ${pct(P.game)}%</span>
+            <span class="why">${m.bo > 1 ? `打越多局，強隊越不容易被爆冷，所以 Bo${m.bo} 的勝率會比單局更拉開。` : "Bo1 只打一局，勝率就是單局勝率。"}</span></li>
+          <li><b>過去交手</b><span class="val">不計入</span>
+            <span class="why">回測顯示把交手紀錄算進勝率，反而比較不準，所以下面的交手紀錄只供參考。</span></li>
           <li><b>本屆戰績</b><span class="val">${fa.res.length || fb.res.length ? `${fa.w}-${fa.l} : ${fb.w}-${fb.l}` : "尚未出賽"}</span>
             <span class="why">已包含在實力分數裡，列出來方便參考。</span></li>
         </ul>
@@ -282,7 +290,7 @@
         <div class="panel"><div class="rosters">
           <div><b>${esc(a)}</b>　${formHTML(a)}</div><div><b>${esc(b)}</b>　${formHTML(b)}</div>
         </div></div></section>
-      <section class="section"><h2>選手名單 <small>本屆登錄名單</small></h2>
+      <section class="section"><h2>選手名單 <small>本屆登錄名單・右側為選手實力分數</small></h2>
         <div class="rosters">${rosterHTML(a)}${rosterHTML(b)}</div></section>`;
   }
 
@@ -304,12 +312,13 @@
       <p>每隊名稱旁標示的是 2026 世界賽的賽區種子序（例如「LCK 1 號種子」），以及取得資格的方式，來源同樣是 Leaguepedia。</p>
       <ul>${Object.entries(D.teams).map(([c, t]) => `<li><b>${esc(c)}</b>：${esc(t.league)} ${esc(t.seed)} 號種子，${esc(t.qualified || "")}</li>`).join("")}</ul>
       <h2>勝率參考怎麼算</h2>
-      <p>主要依據是「實力分數」（Elo 制）：每支隊伍從 1500 分起算，贏了加分、輸了扣分，贏強隊加得多、輸弱隊扣得多；Bo5 的影響比 Bo1 大。</p>
-      <p>採計的比賽有兩種。一是國際賽：世界賽、MSI、First Stand 全額計算；電競世界盃不是 Riot 官方賽事、也不影響世界賽資格，各隊重視程度可能不同，所以算 0.75 倍。二是 2023 年起各隊在自己聯賽（LCK、LPL、LEC、LCS、LCP、CBLOL 等）的比賽，算 0.5 倍。聯賽比賽讓同賽區的隊伍拉開差距，國際賽則決定各賽區之間誰比較強。</p>
-      <p>再用兩隊過去的交手紀錄做小幅修正（最多約 ±12%），越久以前的交手影響越小。最後結果限制在 5%～95% 之間。</p>
-      <p>這只是根據過去勝負算出的參考值，沒有考慮版本、選手狀態、陣容異動，請不要當成真正的預測。</p>
-      <h2>準不準？（回測結果）</h2>
-      <p>拿 2023 年 10 月到 2026 年 10 月的 279 場國際賽系列賽回測，每場只用開打前已知的資料計算：被看好的一方實際贏了約 72%。但其中「同等級賽區互打」（例如 LCK 對 LPL）只猜中約 58%，接近擲硬幣；不同賽區對戰的準度，則跟「直接猜中韓隊伍」差不多。勝率參考適合當作聊天話題，不適合拿來下注。</p>
+      <p>主要依據是「實力分數」（Elo 制），但不是以隊伍為單位，而是<b>每位選手各有一個分數</b>。每一局比賽，隊伍實力等於當局五名出場選手的平均；贏了五人一起加分、輸了一起扣分，贏強隊加得多。這樣換人、轉隊時分數會跟著選手走，例如新組成的隊伍不必從零開始。</p>
+      <p>採計 2023 年起的每一局：世界賽、MSI、First Stand 全額計算；電競世界盃不是 Riot 官方賽事，算 0.75 倍；各隊在自己聯賽（LCK、LPL、LEC、LCS、LCP、CBLOL 等）的比賽算 0.5 倍。聯賽讓同賽區的選手拉開差距，國際賽決定各賽區之間誰比較強。</p>
+      <p>預測時，用本屆世界賽登錄名單中、每個位置最近有上場的選手當作預計陣容，算出單局勝率，再換算成 Bo1、Bo3、Bo5 的系列賽勝率（打越多局，強隊越不容易被爆冷）。結果限制在 3%～97% 之間。</p>
+      <p>這只是根據過去勝負算出的參考值，沒有考慮版本、選手狀態、臨時換人，請不要當成真正的預測。</p>
+      <h2>怎麼挑出這個算法、準不準？</h2>
+      <p>我們試了 3,200 多種組合：以選手或隊伍為單位、聯賽比重、分數變動幅度、每局經濟差、藍紅方、每年回歸、過去交手修正。用 2023 年 10 月到 2026 年 10 月的 275 場國際賽系列賽回測，每場只用開打前已知的資料；先用前半段挑設定、拿後半段驗證，再反過來驗一次。經濟差、藍紅方、每年回歸、交手修正加進去都沒有幫助，所以沒有採用。</p>
+      <p>結果：被看好的一方實際贏了約 71%。跟最早只看國際賽的版本比，猜中的場數差不多，但<b>給的機率更準</b>：說 70～80% 的比賽實際贏約 84%，說 90% 以上的 11 場全部命中。不過「同等級賽區互打」（例如 LCK 對 LPL）只猜中約 59%，仍接近擲硬幣；不同賽區對戰的準度，則跟「直接猜中韓隊伍」一樣。勝率參考適合當作聊天話題，不適合拿來下注。</p>
       <h2>聲明</h2>
       <p>本站為粉絲自製的非營利網站，與 Riot Games 及各戰隊無關，不使用 Riot 或戰隊的商標與 logo。</p>
       <p lang="en">2026 LoL Worlds Analysis was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
