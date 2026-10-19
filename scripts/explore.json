@@ -1,3 +1,0 @@
-{
- "intl": {"tables":"MatchSchedule","fields":"Team1,Team2,Team1Score,Team2Score,Winner,DateTime_UTC,BestOf,Tab,OverviewPage,MatchId,FF","where":"(OverviewPage LIKE \"%Season World Championship%\" OR OverviewPage LIKE \"%Mid-Season Invitational%\") AND OverviewPage NOT LIKE \"%Qualifiers%\"","order_by":"DateTime_UTC","page":500,"max_rows":8000}
-}

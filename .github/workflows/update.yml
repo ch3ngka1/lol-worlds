@@ -1,0 +1,26 @@
+name: 更新賽程與比分
+on:
+  schedule:
+    - cron: "7 * * * *"      # 每小時第 7 分鐘（UTC）
+  workflow_dispatch:
+  push:
+    paths: ['scripts/**']
+permissions:
+  contents: write
+concurrency: { group: update-data, cancel-in-progress: false }
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: 抓 Leaguepedia 最新資料
+        run: python3 scripts/update.py
+      - name: 有變動才存檔
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && { echo "資料沒有變動"; exit 0; }
+          git commit -m "自動更新賽程資料"
+          git pull --rebase && git push

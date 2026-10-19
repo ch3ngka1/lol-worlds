@@ -1,0 +1,204 @@
+{
+ "AL": {
+  "name": "Anyone's Legend",
+  "lp": "Anyone's Legend",
+  "league": "LPL",
+  "lineage": []
+ },
+ "BLG": {
+  "name": "Bilibili Gaming",
+  "lp": "Bilibili Gaming",
+  "league": "LPL",
+  "lineage": []
+ },
+ "TES": {
+  "name": "Top Esports",
+  "lp": "Top Esports",
+  "league": "LPL",
+  "lineage": []
+ },
+ "IG": {
+  "name": "Invictus Gaming",
+  "lp": "Invictus Gaming",
+  "league": "LPL",
+  "lineage": []
+ },
+ "GEN": {
+  "name": "Gen.G",
+  "lp": "Gen.G",
+  "league": "LCK",
+  "lineage": [
+   [
+    "KSV eSports",
+    "收購後改名"
+   ],
+   [
+    "Samsung Galaxy",
+    "被 KSV 收購"
+   ]
+  ]
+ },
+ "HLE": {
+  "name": "Hanwha Life Esports",
+  "lp": "Hanwha Life Esports",
+  "league": "LCK",
+  "lineage": [
+   [
+    "ROX Tigers",
+    "品牌更換"
+   ],
+   [
+    "Tigers",
+    "改名"
+   ],
+   [
+    "KOO Tigers",
+    "改名"
+   ],
+   [
+    "GE Tigers",
+    "改名"
+   ],
+   [
+    "HUYA Tigers",
+    "改名"
+   ]
+  ]
+ },
+ "T1": {
+  "name": "T1",
+  "lp": "T1",
+  "league": "LCK",
+  "lineage": [
+   [
+    "SK Telecom T1",
+    "品牌更換"
+   ]
+  ]
+ },
+ "DK": {
+  "name": "Dplus KIA",
+  "lp": "Dplus Kia",
+  "league": "LCK",
+  "lineage": [
+   [
+    "DWG KIA",
+    "品牌更換"
+   ],
+   [
+    "DAMWON Gaming",
+    "品牌更換"
+   ],
+   [
+    "MiraGe Gaming",
+    "品牌更換"
+   ]
+  ]
+ },
+ "G2": {
+  "name": "G2 Esports",
+  "lp": "G2 Esports",
+  "league": "LEC",
+  "lineage": [
+   [
+    "Gamers2",
+    "品牌更換"
+   ]
+  ]
+ },
+ "MKOI": {
+  "name": "Movistar KOI",
+  "lp": "Movistar KOI",
+  "league": "LEC",
+  "lineage": [
+   [
+    "MAD Lions KOI",
+    "品牌更換"
+   ],
+   [
+    "MAD Lions",
+    "改名"
+   ],
+   [
+    "Splyce",
+    "品牌更換"
+   ],
+   [
+    "Movistar Riders",
+    "改名"
+   ]
+  ]
+ },
+ "KC": {
+  "name": "Karmine Corp",
+  "lp": "Karmine Corp",
+  "league": "LEC",
+  "lineage": [
+   [
+    "Kameto Corp",
+    "品牌更換"
+   ]
+  ]
+ },
+ "TLAW": {
+  "name": "Team Liquid",
+  "lp": "Team Liquid",
+  "league": "LCS",
+  "lineage": []
+ },
+ "LYON": {
+  "name": "LYON",
+  "lp": "LYON (2024 American Team)",
+  "league": "LCS",
+  "lineage": []
+ },
+ "C9": {
+  "name": "Cloud9",
+  "lp": "Cloud9",
+  "league": "LCS",
+  "lineage": []
+ },
+ "TSW": {
+  "name": "Team Secret Whales",
+  "lp": "Team Secret Whales",
+  "league": "LCP",
+  "lineage": []
+ },
+ "CFO": {
+  "name": "CTBC Flying Oyster",
+  "lp": "CTBC Flying Oyster",
+  "league": "LCP",
+  "lineage": []
+ },
+ "MVK": {
+  "name": "MVK Esports",
+  "lp": "MVK Esports",
+  "league": "LCP",
+  "lineage": []
+ },
+ "LOS": {
+  "name": "LØS",
+  "lp": "LØS",
+  "league": "CBLOL",
+  "lineage": [
+   [
+    "Los Grandes",
+    "改名"
+   ],
+   [
+    "Flamengo Los Grandes",
+    "改名"
+   ],
+   [
+    "Flamengo Esports",
+    "改名"
+   ]
+  ]
+ },
+ "FUR": {
+  "name": "FURIA",
+  "lp": "FURIA",
+  "league": "CBLOL",
+  "lineage": []
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "method": "實力分數（Elo 制）：只用國際賽（世界賽、MSI）的系列賽勝負計算。\n\n- 每支隊伍從 1500 分起算；勝了加分、輸了扣分，贏強隊加得多。\n- Bo1 / Bo3 / Bo5 的權重不同（K = 20 / 28 / 36）。\n- 每到新的一年，分數往「所屬賽區平均」拉回 1/3，反映陣容變動。\n- 從沒打過國際賽的隊伍，以同賽區隊伍的平均分數起算。",
+ "teams": {
+  "AL": {
+   "elo": 1666.9,
+   "intlSeries": 9
+  },
+  "BLG": {
+   "elo": 1682.1,
+   "intlSeries": 43
+  },
+  "TES": {
+   "elo": 1588.3,
+   "intlSeries": 33
+  },
+  "IG": {
+   "elo": 1624.2,
+   "intlSeries": 36
+  },
+  "GEN": {
+   "elo": 1763.9,
+   "intlSeries": 77
+  },
+  "HLE": {
+   "elo": 1718.2,
+   "intlSeries": 46
+  },
+  "T1": {
+   "elo": 1738.5,
+   "intlSeries": 157
+  },
+  "DK": {
+   "elo": 1676.7,
+   "intlSeries": 66
+  },
+  "G2": {
+   "elo": 1555.6,
+   "intlSeries": 138
+  },
+  "MKOI": {
+   "elo": 1495.5,
+   "intlSeries": 76
+  },
+  "KC": {
+   "elo": 1555.5,
+   "intlSeries": 6
+  },
+  "TLAW": {
+   "elo": 1522.7,
+   "intlSeries": 69
+  },
+  "LYON": {
+   "elo": 1539.6,
+   "intlSeries": 5
+  },
+  "C9": {
+   "elo": 1459.3,
+   "intlSeries": 99
+  },
+  "TSW": {
+   "elo": 1458.5,
+   "intlSeries": 7
+  },
+  "CFO": {
+   "elo": 1477.8,
+   "intlSeries": 18
+  },
+  "MVK": {
+   "elo": 1469.6,
+   "intlSeries": 4
+  },
+  "LOS": {
+   "elo": 1472.7,
+   "intlSeries": 5
+  },
+  "FUR": {
+   "elo": 1420.6,
+   "intlSeries": 7
+  }
+ }
+}

@@ -1,0 +1,885 @@
+{
+ "AL": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Breathe",
+    "page": "Breathe",
+    "role": "Top"
+   },
+   {
+    "name": "Tarzan",
+    "page": "Tarzan (Lee Seung-yong)",
+    "role": "Jungle"
+   },
+   {
+    "name": "Shanks",
+    "page": "Shanks",
+    "role": "Mid"
+   },
+   {
+    "name": "Hope",
+    "page": "Hope (Wang Jie)",
+    "role": "Bot"
+   },
+   {
+    "name": "Kael",
+    "page": "Kael (Kim Jin-hong)",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "BigWei",
+    "page": "BigWei",
+    "role": "Coach"
+   },
+   {
+    "name": "Despa1r",
+    "page": "Despa1r",
+    "role": "Coach"
+   },
+   {
+    "name": "Teacherma",
+    "page": "Teacherma",
+    "role": "Coach"
+   }
+  ]
+ },
+ "BLG": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Bin",
+    "page": "Bin (Chen Ze-Bin)",
+    "role": "Top"
+   },
+   {
+    "name": "Flandre",
+    "page": "Flandre",
+    "role": "Top"
+   },
+   {
+    "name": "Xun",
+    "page": "Xun",
+    "role": "Jungle"
+   },
+   {
+    "name": "Knight",
+    "page": "Knight (Zhuo Ding)",
+    "role": "Mid"
+   },
+   {
+    "name": "Viper",
+    "page": "Viper (Park Do-hyeon)",
+    "role": "Bot"
+   },
+   {
+    "name": "ON",
+    "page": "ON",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Ben",
+    "page": "Ben",
+    "role": "Coach"
+   },
+   {
+    "name": "Chieh",
+    "page": "Chieh",
+    "role": "Coach"
+   },
+   {
+    "name": "Daeny",
+    "page": "Daeny",
+    "role": "Coach"
+   },
+   {
+    "name": "zyb",
+    "page": "zyb",
+    "role": "Coach"
+   }
+  ]
+ },
+ "C9": {
+  "stage": "Play-In",
+  "players": [
+   {
+    "name": "Thanatos",
+    "page": "Thanatos (Park Seung-gyu)",
+    "role": "Top"
+   },
+   {
+    "name": "Blaber",
+    "page": "Blaber",
+    "role": "Jungle"
+   },
+   {
+    "name": "Loki",
+    "page": "Loki (Lee Sang-min)",
+    "role": "Mid"
+   },
+   {
+    "name": "Tactical",
+    "page": "Tactical",
+    "role": "Bot"
+   },
+   {
+    "name": "Vulcan",
+    "page": "Vulcan (Philippe Laflamme)",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Arrow",
+    "page": "Arrow",
+    "role": "Assistant Coach"
+   },
+   {
+    "name": "IWDominate",
+    "page": "IWDominate",
+    "role": "Head Coach"
+   },
+   {
+    "name": "Veigar v2",
+    "page": "Veigar v2",
+    "role": "Assistant Coach"
+   },
+   {
+    "name": "YamatoCannon",
+    "page": "YamatoCannon",
+    "role": "Assistant Coach"
+   }
+  ]
+ },
+ "CFO": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Rest",
+    "page": "Rest",
+    "role": "Top"
+   },
+   {
+    "name": "Shad0w",
+    "page": "Shad0w",
+    "role": "Jungle"
+   },
+   {
+    "name": "POUT",
+    "page": "POUT",
+    "role": "Mid"
+   },
+   {
+    "name": "Doggo",
+    "page": "Doggo",
+    "role": "Bot"
+   },
+   {
+    "name": "Kino",
+    "page": "Kino",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Chawy",
+    "page": "Chawy",
+    "role": "Coach"
+   },
+   {
+    "name": "Wulala",
+    "page": "Wulala",
+    "role": "Coach"
+   }
+  ]
+ },
+ "DK": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Siwoo",
+    "page": "Siwoo",
+    "role": "Top"
+   },
+   {
+    "name": "Lucid",
+    "page": "Lucid (Choi Yong-hyeok)",
+    "role": "Jungle"
+   },
+   {
+    "name": "ShowMaker",
+    "page": "ShowMaker",
+    "role": "Mid"
+   },
+   {
+    "name": "Smash",
+    "page": "Smash (Shin Geum-jae)",
+    "role": "Bot"
+   },
+   {
+    "name": "Career",
+    "page": "Career",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "CvMax",
+    "page": "CvMax",
+    "role": "Coach"
+   },
+   {
+    "name": "Hachani",
+    "page": "Hachani",
+    "role": "Coach"
+   },
+   {
+    "name": "PoohManDu",
+    "page": "PoohManDu",
+    "role": "Coach"
+   }
+  ]
+ },
+ "FUR": {
+  "stage": "Play-In",
+  "players": [
+   {
+    "name": "Guigo",
+    "page": "Guigo",
+    "role": "Top"
+   },
+   {
+    "name": "Tatu",
+    "page": "Tatu (Pedro Seixas)",
+    "role": "Jungle"
+   },
+   {
+    "name": "Tutsz",
+    "page": "Tutsz",
+    "role": "Mid"
+   },
+   {
+    "name": "Ayu",
+    "page": "Ayu (Andrey Saraiva)",
+    "role": "Bot"
+   },
+   {
+    "name": "JoJo",
+    "page": "JoJo (Gabriel Dzelme)",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "furyz",
+    "page": "furyz",
+    "role": "Coach"
+   },
+   {
+    "name": "Lanterninho",
+    "page": "Lanterninho",
+    "role": "Coach"
+   },
+   {
+    "name": "Luuukz",
+    "page": "Luuukz",
+    "role": "Coach"
+   }
+  ]
+ },
+ "G2": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "BrokenBlade",
+    "page": "BrokenBlade",
+    "role": "Top"
+   },
+   {
+    "name": "SkewMond",
+    "page": "SkewMond",
+    "role": "Jungle"
+   },
+   {
+    "name": "Caps",
+    "page": "Caps",
+    "role": "Mid"
+   },
+   {
+    "name": "Hans Sama",
+    "page": "Hans Sama",
+    "role": "Bot"
+   },
+   {
+    "name": "Labrov",
+    "page": "Labrov",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Memento",
+    "page": "Memento",
+    "role": "Coach"
+   },
+   {
+    "name": "Perkz",
+    "page": "Perkz",
+    "role": "Coach"
+   },
+   {
+    "name": "Rodrigo",
+    "page": "Rodrigo",
+    "role": "Coach"
+   }
+  ]
+ },
+ "GEN": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Kiin",
+    "page": "Kiin",
+    "role": "Top"
+   },
+   {
+    "name": "Canyon",
+    "page": "Canyon",
+    "role": "Jungle"
+   },
+   {
+    "name": "Chovy",
+    "page": "Chovy",
+    "role": "Mid"
+   },
+   {
+    "name": "Ruler",
+    "page": "Ruler",
+    "role": "Bot"
+   },
+   {
+    "name": "Duro",
+    "page": "Duro",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Lyn",
+    "page": "Lyn",
+    "role": "Coach"
+   },
+   {
+    "name": "Nova",
+    "page": "Nova (Park Chan-ho)",
+    "role": "Coach"
+   },
+   {
+    "name": "Ryu",
+    "page": "Ryu",
+    "role": "Coach"
+   }
+  ]
+ },
+ "HLE": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Zeus",
+    "page": "Zeus",
+    "role": "Top"
+   },
+   {
+    "name": "Kanavi",
+    "page": "Kanavi",
+    "role": "Jungle"
+   },
+   {
+    "name": "Zeka",
+    "page": "Zeka (Kim Geon-woo)",
+    "role": "Mid"
+   },
+   {
+    "name": "Gumayusi",
+    "page": "Gumayusi",
+    "role": "Bot"
+   },
+   {
+    "name": "Delight",
+    "page": "Delight",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Homme",
+    "page": "Homme",
+    "role": "Coach"
+   },
+   {
+    "name": "Mowgli",
+    "page": "Mowgli",
+    "role": "Coach"
+   },
+   {
+    "name": "Sin",
+    "page": "Sin (Yeon Hyeong-mo)",
+    "role": "Coach"
+   }
+  ]
+ },
+ "IG": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "TheShy",
+    "page": "TheShy",
+    "role": "Top"
+   },
+   {
+    "name": "Wei",
+    "page": "Wei (Yan Yang-Wei)",
+    "role": "Jungle"
+   },
+   {
+    "name": "Rookie",
+    "page": "Rookie",
+    "role": "Mid"
+   },
+   {
+    "name": "JiaQi",
+    "page": "JiaQi",
+    "role": "Bot"
+   },
+   {
+    "name": "Meiko",
+    "page": "Meiko",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Chengz",
+    "page": "Chengz",
+    "role": "Coach"
+   },
+   {
+    "name": "Fury",
+    "page": "Fury (Lee Jin-yong)",
+    "role": "Coach"
+   },
+   {
+    "name": "Helper",
+    "page": "Helper (Kwon Yeong-jae)",
+    "role": "Coach"
+   },
+   {
+    "name": "Kezman",
+    "page": "Kezman",
+    "role": "Coach"
+   }
+  ]
+ },
+ "KC": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Canna",
+    "page": "Canna",
+    "role": "Top"
+   },
+   {
+    "name": "Yike",
+    "page": "Yike",
+    "role": "Jungle"
+   },
+   {
+    "name": "kyeahoo",
+    "page": "kyeahoo",
+    "role": "Mid"
+   },
+   {
+    "name": "Caliste",
+    "page": "Caliste",
+    "role": "Bot"
+   },
+   {
+    "name": "Busio",
+    "page": "Busio",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Reapered",
+    "page": "Reapered",
+    "role": "Coach"
+   },
+   {
+    "name": "Zeph",
+    "page": "Zeph",
+    "role": "Coach"
+   }
+  ]
+ },
+ "LOS": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Zest",
+    "page": "Zest (Kim Dong-min)",
+    "role": "Top"
+   },
+   {
+    "name": "Curse",
+    "page": "Curse (Raí Yamada)",
+    "role": "Jungle"
+   },
+   {
+    "name": "Feisty",
+    "page": "Feisty",
+    "role": "Mid"
+   },
+   {
+    "name": "Duduhh",
+    "page": "Duduhh",
+    "role": "Bot"
+   },
+   {
+    "name": "Ackerman",
+    "page": "Ackerman (Gabriel Aparicio)",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Brandão",
+    "page": "Brandão",
+    "role": "Coach"
+   },
+   {
+    "name": "Enatron",
+    "page": "Enatron",
+    "role": "Coach"
+   },
+   {
+    "name": "Invokid",
+    "page": "Invokid",
+    "role": "Coach"
+   }
+  ]
+ },
+ "LYON": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Dhokla",
+    "page": "Dhokla",
+    "role": "Top"
+   },
+   {
+    "name": "Inspired",
+    "page": "Inspired",
+    "role": "Jungle"
+   },
+   {
+    "name": "Saint",
+    "page": "Saint (Kang Sung-in)",
+    "role": "Mid"
+   },
+   {
+    "name": "Berserker",
+    "page": "Berserker (Kim Min-cheol)",
+    "role": "Bot"
+   },
+   {
+    "name": "Isles",
+    "page": "Isles",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Reignover",
+    "page": "Reignover",
+    "role": "Coach"
+   },
+   {
+    "name": "Rigby",
+    "page": "Rigby",
+    "role": "Coach"
+   }
+  ]
+ },
+ "MKOI": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Myrwn",
+    "page": "Myrwn",
+    "role": "Top"
+   },
+   {
+    "name": "Elyoya",
+    "page": "Elyoya",
+    "role": "Jungle"
+   },
+   {
+    "name": "Jojopyun",
+    "page": "Jojopyun",
+    "role": "Mid"
+   },
+   {
+    "name": "Supa",
+    "page": "Supa",
+    "role": "Bot"
+   },
+   {
+    "name": "Alvaro",
+    "page": "Alvaro (Álvaro Fernández)",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Alphari",
+    "page": "Alphari",
+    "role": "Coach"
+   },
+   {
+    "name": "Independent",
+    "page": "Independent",
+    "role": "Coach"
+   },
+   {
+    "name": "Melzhet",
+    "page": "Melzhet",
+    "role": "Coach"
+   }
+  ]
+ },
+ "MVK": {
+  "stage": "Play-In",
+  "players": [
+   {
+    "name": "Kratos",
+    "page": "Kratos (Ngô Đức Khánh)",
+    "role": "Top"
+   },
+   {
+    "name": "Gury",
+    "page": "Gury",
+    "role": "Jungle"
+   },
+   {
+    "name": "SanSan",
+    "page": "SanSan",
+    "role": "Jungle"
+   },
+   {
+    "name": "Chika",
+    "page": "Chika",
+    "role": "Mid"
+   },
+   {
+    "name": "Harky",
+    "page": "Harky",
+    "role": "Bot"
+   },
+   {
+    "name": "SiuLoong",
+    "page": "SiuLoong",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "BigKoro",
+    "page": "BigKoro",
+    "role": "Coach"
+   },
+   {
+    "name": "SofM",
+    "page": "SofM",
+    "role": "Coach"
+   },
+   {
+    "name": "Suga",
+    "page": "Suga",
+    "role": "Coach"
+   }
+  ]
+ },
+ "T1": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Doran",
+    "page": "Doran (Choi Hyeon-jun)",
+    "role": "Top"
+   },
+   {
+    "name": "Oner",
+    "page": "Oner",
+    "role": "Jungle"
+   },
+   {
+    "name": "Faker",
+    "page": "Faker",
+    "role": "Mid"
+   },
+   {
+    "name": "Peyz",
+    "page": "Peyz",
+    "role": "Bot"
+   },
+   {
+    "name": "Keria",
+    "page": "Keria",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Easyhoon",
+    "page": "Easyhoon",
+    "role": "Coach"
+   },
+   {
+    "name": "Mata",
+    "page": "Mata",
+    "role": "Coach"
+   },
+   {
+    "name": "Tom",
+    "page": "Tom (Im Jae-hyeon)",
+    "role": "Coach"
+   }
+  ]
+ },
+ "TLAW": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Morgan",
+    "page": "Morgan",
+    "role": "Top"
+   },
+   {
+    "name": "Josedeodo",
+    "page": "Josedeodo",
+    "role": "Jungle"
+   },
+   {
+    "name": "Quid",
+    "page": "Quid",
+    "role": "Mid"
+   },
+   {
+    "name": "Yeon",
+    "page": "Yeon (Sean Sung)",
+    "role": "Bot"
+   },
+   {
+    "name": "CoreJJ",
+    "page": "CoreJJ",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Spawn",
+    "page": "Spawn (Jake Tiberi)",
+    "role": "Coach"
+   },
+   {
+    "name": "Spookz",
+    "page": "Spookz",
+    "role": "Coach"
+   }
+  ]
+ },
+ "TSW": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "Pun",
+    "page": "Pun",
+    "role": "Top"
+   },
+   {
+    "name": "Hizto",
+    "page": "Hizto",
+    "role": "Jungle"
+   },
+   {
+    "name": "Dire",
+    "page": "Dire",
+    "role": "Mid"
+   },
+   {
+    "name": "Eddie",
+    "page": "Eddie",
+    "role": "Bot"
+   },
+   {
+    "name": "Bie",
+    "page": "Bie",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Ciel",
+    "page": "Ciel (Trần Tiến Thịnh)",
+    "role": "Coach"
+   },
+   {
+    "name": "WarHorse",
+    "page": "WarHorse",
+    "role": "Coach"
+   }
+  ]
+ },
+ "TES": {
+  "stage": "Main Event",
+  "players": [
+   {
+    "name": "369",
+    "page": "369",
+    "role": "Top"
+   },
+   {
+    "name": "Tian",
+    "page": "Tian",
+    "role": "Jungle"
+   },
+   {
+    "name": "Creme",
+    "page": "Creme",
+    "role": "Mid"
+   },
+   {
+    "name": "JackeyLove",
+    "page": "JackeyLove",
+    "role": "Bot"
+   },
+   {
+    "name": "Zhuo",
+    "page": "Zhuo",
+    "role": "Support"
+   }
+  ],
+  "staff": [
+   {
+    "name": "Poppy",
+    "page": "Poppy (Chang Po-Hao)",
+    "role": "Coach"
+   }
+  ]
+ }
+}
