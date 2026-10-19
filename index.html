@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>2026 LoL 世界賽分析｜賽程、交手戰績、勝率參考</title>
 <meta name="description" content="2026 英雄聯盟世界賽粉絲分析站：每小時自動更新的賽程與比分、兩隊歷屆世界賽與 MSI 交手紀錄、選手名單與勝率參考。資料來源 Leaguepedia。">
 <link rel="canonical" href="https://ch3ngka1.github.io/lol-worlds/">
@@ -10,13 +12,18 @@
 <meta property="og:title" content="2026 LoL 世界賽分析">
 <meta property="og:description" content="賽程比分自動更新、國際賽交手戰績、選手名單、勝率參考。">
 <meta property="og:url" content="https://ch3ngka1.github.io/lol-worlds/">
+<meta property="og:image" content="https://ch3ngka1.github.io/lol-worlds/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f4f2ec" media="(prefers-color-scheme: light)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23c8a24a'/%3E%3Cpath d='M9 22V10h3v9.5h6V22z M19 10h4v12h-4z' fill='%23111'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=4">
+<link rel="stylesheet" href="assets/style.css?v=9">
 </head>
 <body>
 <a class="skip" href="#main">跳到主要內容</a>
@@ -28,7 +35,9 @@
     </a>
     <nav class="head-nav" aria-label="主選單">
       <a href="#/">賽程</a>
-      <a href="#/about">資料與方法</a>
+      <a href="#/odds" aria-label="晉級與奪冠機率">機率</a>
+      <a href="#/record" aria-label="本屆預測成績">成績</a>
+      <a href="#/about" aria-label="資料與方法">方法</a>
     </nav>
   </div>
 </header>
@@ -54,6 +63,6 @@
     <p class="legal">本站為粉絲自製的非營利網站，與 Riot Games 及各戰隊無關。勝率僅供參考。</p>
   </div>
 </footer>
-<script src="assets/app.js?v=7" defer></script>
+<script src="assets/app.js?v=9" defer></script>
 </body>
 </html>

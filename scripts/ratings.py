@@ -42,6 +42,7 @@ def compute_ratings(teams, history, games, rosters):
     last_seen = {}                    # (隊伍, 選手) -> 最後上場時間
     last_lineup = {}
     games_played = defaultdict(int)   # 選手出場局數
+    monthly = defaultdict(dict)       # 選手 -> {YYYY-MM: 月底分數}
 
     key = lambda c, n: c or "~" + n
 
@@ -90,6 +91,7 @@ def compute_ratings(teams, history, games, rosters):
         for q in p1: P[q] += d; games_played[q] += 1; last_seen[(a, q)] = dt
         for q in p2: P[q] -= d; games_played[q] += 1; last_seen[(b, q)] = dt
         played[a] += 1; played[b] += 1
+        for q in p1 + p2: monthly[q][dt[:7]] = round(P[q], 1)
         if p1: last_lineup[a] = list(p1)
         if p2: last_lineup[b] = list(p2)
 
@@ -121,5 +123,6 @@ def compute_ratings(teams, history, games, rosters):
             strength = T[c]
         out[c] = {"elo": round(strength, 1),
                   "lineup": [{"name": q.split(" (")[0], "role": ROLES[i], "elo": round(P.get(q, T[c]), 1),
-                              "games": games_played.get(q, 0)} for i, q in enumerate(chosen)]}
+                              "games": games_played.get(q, 0),
+                              "hist": sorted(monthly.get(q, {}).items())} for i, q in enumerate(chosen)]}
     return {"method": __doc__.strip(), "kGame": K_GAME, "teams": out}

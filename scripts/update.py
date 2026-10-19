@@ -80,6 +80,37 @@ def main(offline=None):
     changed |= write_json("schedule.json", {"matches": schedule})
     changed |= write_json("rosters.json", rosters)
     changed |= write_json("ratings.json", ratings)
+    # 晉級機率
+    from sim import simulate, series_prob
+    from ratings import expected
+    elo = {c: v["elo"] for c, v in ratings["teams"].items()}
+    odds = simulate(schedule, elo)
+    if odds:
+        changed |= write_json("odds.json", odds)
+    # 賽前勝率紀錄：開打前每小時覆寫，開打後凍結
+    pred_path = os.path.join(DATA, "predictions.json")
+    preds = json.load(open(pred_path, encoding="utf-8")) if os.path.exists(pred_path) else {}
+    now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    for m in schedule:
+        if m["c1"] and m["c2"] and m["time"] > now and not m["w"]:
+            g = expected(elo[m["c1"]], elo[m["c2"]])
+            new = {"a": m["c1"], "b": m["c2"], "bo": m["bo"], "game": round(g, 4),
+                   "p": round(min(.97, max(.03, series_prob(g, int(m["bo"] or 1)))), 4)}
+            old = preds.get(m["id"], {})
+            if {k: old.get(k) for k in new} != new:
+                preds[m["id"]] = dict(new, at=now)
+    changed |= write_json("predictions.json", preds)
+    # 隊伍國際賽成績（依賽事彙總）
+    summary = {}
+    for s_ in history:
+        for side, other in ((1, 2), (2, 1)):
+            c = s_["c%d" % side]
+            if not c: continue
+            e = summary.setdefault(c, {}).setdefault(s_["event"], {"w": 0, "l": 0, "names": set()})
+            e["w" if s_["w"] == side else "l"] += 1; e["names"].add(s_["t%d" % side])
+    team_hist = {c: [{"event": k, "w": v["w"], "l": v["l"], "as": sorted(v["names"])} for k, v in sorted(evs.items(), reverse=True)]
+                 for c, evs in summary.items()}
+    changed |= write_json("team_history.json", team_hist)
     codes = {t["code"] for t in teams}
     h2h = [x for x in history if x["c1"] in codes and x["c2"] in codes and x["c1"] != x["c2"]]
     changed |= write_json("h2h.json", {"series": h2h})

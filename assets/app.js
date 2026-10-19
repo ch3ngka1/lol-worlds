@@ -4,6 +4,7 @@
 
   const TZ = "Asia/Taipei";
   const FILES = ["meta", "teams", "schedule", "rosters", "ratings", "h2h"];
+  const OPTIONAL = ["odds", "predictions", "team_history"];   // 缺了也能正常顯示
   const ROLE = { Top: "上路", Jungle: "打野", Mid: "中路", Bot: "下路", Support: "輔助" };
   const ROUND = { Quarterfinals: "八強", Semifinals: "四強", Finals: "決賽" };
   const LEAGUE_ZH = { LCK: "LCK 韓國", LPL: "LPL 中國", LEC: "LEC 歐洲", LCS: "LCS 北美", LCP: "LCP 亞太", CBLOL: "CBLOL 巴西" };
@@ -52,12 +53,25 @@
   /* ---------- 讀資料 ---------- */
   async function load() {
     const bust = "?t=" + Math.floor(Date.now() / 300000); // 每 5 分鐘換一次，避免拿到舊快取
-    const res = await Promise.all(FILES.map((f) =>
-      fetch(`data/${f}.json${bust}`).then((r) => { if (!r.ok) throw new Error(`${f}.json ${r.status}`); return r.json(); })));
+    const get = (f) => fetch(`data/${f}.json${bust}`).then((r) => { if (!r.ok) throw new Error(`${f}.json ${r.status}`); return r.json(); });
+    const res = await Promise.all(FILES.map(get));
+    const opt = await Promise.all(OPTIONAL.map((f) => get(f).catch(() => null)));
     const d = Object.fromEntries(FILES.map((f, i) => [f, res[i]]));
+    OPTIONAL.forEach((f, i) => { d[f] = opt[i]; });
     d.matches = d.schedule.matches;
     d.series = d.h2h.series;
+    d.preds = d.predictions || {};
     return d;
+  }
+
+  /* 賽前紀錄：已打完且有賽前勝率的比賽 */
+  function predResult(m) {
+    const pr = D.preds[m.id];
+    if (!pr || !isDone(m)) return null;
+    const pa = pr.a === m.c1 ? pr.p : 1 - pr.p;          // 換算成 c1 的勝率
+    const fav = pa >= 0.5 ? m.c1 : m.c2, conf = Math.max(pa, 1 - pa);
+    const winner = m.w === 1 ? m.c1 : m.c2;
+    return { fav, conf, winner, hit: fav === winner, at: pr.at };
   }
 
   /* ---------- 本屆戰績 ---------- */
@@ -123,6 +137,10 @@
       ? `<div class="score" aria-label="比分 ${m.s1} 比 ${m.s2}">${m.s1 ?? ""}<span class="vs"> : </span>${m.s2 ?? ""}<small>Bo${m.bo}・已結束</small></div>`
       : `<div class="score"><span class="vs">vs</span><small>Bo${m.bo}</small></div>`;
     let extra = "";
+    const pr = predResult(m);
+    if (pr) {
+      extra = `<div class="mini-bar pred ${pr.hit ? "hit" : "miss"}">賽前看好 ${esc(pr.fav)} ${pct(pr.conf)}%　<b>${pr.hit ? "✓ 猜中" : "✗ 猜錯"}</b></div>`;
+    }
     if (!done && known(m)) {
       const p = predict(m.c1, m.c2, m.bo).p;
       extra = `<div class="mini-bar"><span class="num">${pct(p)}%</span>
@@ -211,8 +229,10 @@
     let probBlock;
     if (done) {
       const winner = m.w === 1 ? a : b;
+      const pr = predResult(m);
       probBlock = `<div class="panel"><p style="margin:0">這場已經打完，由 <b>${esc(winner)}</b> 以 ${Math.max(m.s1, m.s2)}:${Math.min(m.s1, m.s2)} 獲勝。</p>
-        <p class="note">打完的比賽不再顯示勝率，因為實力分數已經把這場結果算進去了。</p></div>`;
+        ${pr ? `<p style="margin:8px 0 0">賽前看好 <b>${esc(pr.fav)}</b>（${pct(pr.conf)}%）：<b>${pr.hit ? "✓ 猜中" : "✗ 猜錯"}</b>。<a href="#/record">看本屆所有預測</a></p>`
+             : `<p class="note">這場在本站開始記錄賽前勝率之前就打完了，沒有賽前紀錄。</p>`}</div>`;
     } else {
       const P = predict(a, b, m.bo);
       const lu = (c) => (D.ratings.teams[c].lineup || []).map((x) => esc(x.name)).join("、");
@@ -268,7 +288,7 @@
     const hero = (code, side) => {
       const t = team(code);
       const st = done ? ((m.w === 1) === (side === 1) ? "won" : "lost") : "";
-      return `<div class="hero-team ${st}"><div class="code">${esc(code)}</div><div class="full">${esc(t.name)}</div>
+      return `<div class="hero-team ${st}"><a class="code team-link" href="#/t/${esc(code)}">${esc(code)}</a><div class="full">${esc(t.name)}</div>
         <div class="league"><span class="dot ${lgClass(code)}" aria-hidden="true"></span>${esc(LEAGUE_ZH[t.league] || t.league)}・${esc(t.seed)} 號種子</div>
         <div class="qual">${esc(t.qualified || "")}</div></div>`;
     };
@@ -319,6 +339,9 @@
       <h2>怎麼挑出這個算法、準不準？</h2>
       <p>我們試了 3,200 多種組合：以選手或隊伍為單位、聯賽比重、分數變動幅度、每局經濟差、藍紅方、每年回歸、過去交手修正。用 2023 年 10 月到 2026 年 10 月的 275 場國際賽系列賽回測，每場只用開打前已知的資料；先用前半段挑設定、拿後半段驗證，再反過來驗一次。經濟差、藍紅方、每年回歸、交手修正加進去都沒有幫助，所以沒有採用。</p>
       <p>結果：被看好的一方實際贏了約 71%。跟最早只看國際賽的版本比，猜中的場數差不多，但<b>給的機率更準</b>：說 70～80% 的比賽實際贏約 84%，說 90% 以上的 11 場全部命中。不過「同等級賽區互打」（例如 LCK 對 LPL）只猜中約 59%，仍接近擲硬幣；不同賽區對戰的準度，則跟「直接猜中韓隊伍」一樣。勝率參考適合當作聊天話題，不適合拿來下注。</p>
+      <h2>晉級機率與預測成績</h2>
+      <p>「機率」頁把本屆剩下的比賽用目前的實力分數模擬 2 萬次，算出每隊進八強、四強、決賽與奪冠的機率；已經打完的比賽直接用真實結果。瑞士輪抽籤用簡化規則（同戰績互抽、避免重複交手），實際規則更複雜，所以是近似值。</p>
+      <p>「成績」頁公開每場比賽開打前的勝率：開打前每小時更新一次，開打後就凍結不再改動，打完直接對答案。這是檢驗模型最誠實的方式。</p>
       <h2>聲明</h2>
       <p>本站為粉絲自製的非營利網站，與 Riot Games 及各戰隊無關，不使用 Riot 或戰隊的商標與 logo。</p>
       <p lang="en">2026 LoL Worlds Analysis was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
@@ -326,15 +349,117 @@
     </article>`;
   }
 
+  /* ---------- 頁面：晉級與奪冠機率 ---------- */
+  const teamLink = (c) => `<a class="team-link" href="#/t/${esc(c)}"><span class="dot ${lgClass(c)}" aria-hidden="true"></span><b>${esc(c)}</b></a>`;
+  const pc = (x) => (x == null ? "–" : x >= 0.995 ? ">99%" : x > 0 && x < 0.005 ? "<1%" : `${Math.round(x * 100)}%`);
+
+  function renderOdds() {
+    document.title = "晉級與奪冠機率｜2026 LoL 世界賽分析";
+    if (!D.odds) { view.innerHTML = `<div class="state">目前還沒有機率資料。</div>`; return; }
+    const rows = Object.entries(D.odds.teams).sort((x, y) => y[1].champ - x[1].champ || y[1].qf - x[1].qf);
+    view.innerHTML = `
+      <div class="page-title"><h1>晉級與奪冠機率</h1><p>依目前實力分數模擬 ${D.odds.n.toLocaleString()} 次，跟著賽果每小時更新</p></div>
+      <div class="table-wrap"><table class="data-table">
+        <caption class="sr-only">各隊晉級與奪冠機率</caption>
+        <thead><tr><th scope="col">隊伍</th><th scope="col">瑞士輪</th><th scope="col">進八強</th><th scope="col">進四強</th><th scope="col">進決賽</th><th scope="col">奪冠</th></tr></thead>
+        <tbody>${rows.map(([c, o]) => {
+          const r = worldsRecord(c);
+          return `<tr><th scope="row">${teamLink(c)}</th><td class="num">${r.swiss || "0-0"}</td>
+            <td class="num">${pc(o.qf)}</td><td class="num">${pc(o.sf)}</td><td class="num">${pc(o.final)}</td>
+            <td class="num champ"><span class="cbar" style="width:${Math.round(o.champ * 100)}%"></span><span>${pc(o.champ)}</span></td></tr>`;
+        }).join("")}</tbody></table></div>
+      <p class="note">瑞士輪抽籤用簡化規則：同戰績互抽、避免重複交手，決定晉級或淘汰的比賽打 Bo3。八強由 3-0 的隊伍對 3-2 的隊伍，其餘隨機。實際抽籤還有同賽區迴避等規則，所以只是近似值。機率完全來自實力分數，準度限制請看<a href="#/about">資料與方法</a>。</p>`;
+  }
+
+  /* ---------- 頁面：本屆預測成績 ---------- */
+  function renderRecord() {
+    document.title = "本屆預測成績｜2026 LoL 世界賽分析";
+    const done = D.matches.filter((m) => predResult(m)).map((m) => [m, predResult(m)]);
+    const hit = done.filter(([, r]) => r.hit).length;
+    const expect = done.reduce((t, [, r]) => t + r.conf, 0);
+    const upcoming = D.matches.filter((m) => !isDone(m) && known(m)).length;
+    const body = done.length ? `
+      <div class="stat-row">
+        <div class="stat"><div class="big num">${hit}<span class="muted"> / ${done.length}</span></div><div class="lbl">猜中場數</div></div>
+        <div class="stat"><div class="big num">${pct(hit / done.length)}%</div><div class="lbl">猜中率</div></div>
+        <div class="stat"><div class="big num">${expect.toFixed(1)}</div><div class="lbl">模型自己預期會中幾場</div></div>
+      </div>
+      <p class="note">「預期會中幾場」是把每場賽前看好那一方的勝率加起來。實際猜中的場數跟它差不多，代表給的機率大致合理；差很多就代表模型這次失準。場數少的時候差距主要是運氣。</p>
+      <div class="list">${done.slice().reverse().map(([m]) => matchRow(m)).join("")}</div>`
+      : `<div class="state">本屆還沒有「有賽前紀錄」的比賽打完。<br>從瑞士輪開始，每場開打前的勝率都會被記錄下來，打完就會出現在這裡。${upcoming ? `<br>目前已記錄 ${upcoming} 場即將開打的比賽。` : ""}</div>`;
+    view.innerHTML = `<div class="page-title"><h1>本屆預測成績</h1><p>開打前的勝率會被凍結保存，打完直接對答案</p></div>${body}`;
+  }
+
+  /* ---------- 頁面：隊伍 ---------- */
+  function spark(hist, code) {
+    const pts = (hist || []).slice(-24);
+    if (pts.length < 2) return "";
+    const W = 120, H = 28, ys = pts.map((p) => p[1]);
+    const lo = Math.min(...ys), hi = Math.max(...ys), span = Math.max(hi - lo, 1);
+    const X = (i) => 2 + (i * (W - 4)) / (pts.length - 1), Y = (v) => H - 3 - ((v - lo) / span) * (H - 6);
+    const d = pts.map((p, i) => `${i ? "L" : "M"}${X(i).toFixed(1)},${Y(p[1]).toFixed(1)}`).join("");
+    const first = pts[0], last = pts[pts.length - 1];
+    return `<svg class="spark lg-${esc(team(code).league)}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img"
+      aria-label="${esc(first[0])} ${Math.round(first[1])} 分，到 ${esc(last[0])} ${Math.round(last[1])} 分">
+      <path d="${d}" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${X(pts.length - 1)}" cy="${Y(last[1])}" r="3"/>
+      ${pts.map((p, i) => `<rect x="${X(i) - 3}" y="0" width="6" height="${H}" fill="transparent"><title>${esc(p[0])}：${Math.round(p[1])} 分</title></rect>`).join("")}
+    </svg>`;
+  }
+
+  function renderTeam(code) {
+    const t = team(code);
+    if (!t) { view.innerHTML = `<a class="back" href="#/">← 回賽程</a><div class="state">找不到這支隊伍。</div>`; return; }
+    document.title = `${code} ${t.name}｜2026 LoL 世界賽分析`;
+    const rt = D.ratings.teams[code] || {}, o = D.odds && D.odds.teams[code], r = worldsRecord(code);
+    const lineup = rt.lineup || [];
+    const reg = (D.rosters[code] || { players: [], staff: [] });
+    const norm = (x) => String(x).split(" (")[0].toLowerCase();
+    const subs = reg.players.filter((p) => !lineup.some((x) => norm(x.name) === norm(p.name)));
+    const matches = D.matches.filter((m) => m.c1 === code || m.c2 === code);
+    const hist = (D.team_history && D.team_history[code]) || [];
+    view.innerHTML = `
+      <a class="back" href="#/">← 回賽程</a>
+      <section class="hero" aria-label="隊伍資訊">
+        <div class="team-hero">
+          <div><h1 class="code">${esc(code)}</h1><div class="full">${esc(t.name)}</div></div>
+          <div class="league"><span class="dot ${lgClass(code)}" aria-hidden="true"></span>${esc(LEAGUE_ZH[t.league] || t.league)}・${esc(t.seed)} 號種子<div class="qual">${esc(t.qualified || "")}</div></div>
+        </div>
+        <div class="stat-row compact">
+          <div class="stat"><div class="big num">${r.swiss || (r.res.length ? `${r.w}-${r.l}` : "0-0")}</div><div class="lbl">${r.swiss ? "瑞士輪戰績" : "本屆戰績"}</div></div>
+          <div class="stat"><div class="big num">${Math.round(rt.elo || 0)}</div><div class="lbl">實力分數</div></div>
+          ${o ? `<div class="stat"><div class="big num">${pc(o.qf)}</div><div class="lbl">進八強</div></div>
+          <div class="stat"><div class="big num">${pc(o.champ)}</div><div class="lbl">奪冠</div></div>` : ""}
+        </div>
+      </section>
+      <section class="section"><h2>預計陣容 <small>右側為近兩年分數走勢</small></h2>
+        <div class="panel roster"><table>
+          ${lineup.map((x) => `<tr><th scope="row">${ROLE[x.role] || esc(x.role)}</th><td>${esc(x.name)}<span class="muted" style="font-size:12px">　${x.games} 局</span></td>
+            <td class="num" style="text-align:right">${Math.round(x.elo)}</td><td style="width:128px;text-align:right">${spark(x.hist, code)}</td></tr>`).join("")}
+        </table>
+        ${subs.length ? `<p class="staff">替補：${subs.map((p) => `${esc(p.name)}（${ROLE[p.role] || esc(p.role)}）`).join("、")}</p>` : ""}
+        ${reg.staff.length ? `<p class="staff">教練團：${reg.staff.map((x) => esc(x.name)).join("、")}</p>` : ""}
+        </div></section>
+      <section class="section"><h2>本屆賽程</h2><div class="list">${matches.map(matchRow).join("") || '<div class="state">還沒有比賽。</div>'}</div></section>
+      <section class="section"><h2>國際賽成績 <small>系列賽勝-敗，2014 年起</small></h2>
+        ${hist.length ? `<div class="table-wrap"><table class="data-table"><thead><tr><th scope="col">賽事</th><th scope="col">勝-敗</th><th scope="col">當時隊名</th></tr></thead>
+          <tbody>${hist.map((e) => `<tr><th scope="row">${esc(e.event)}</th><td class="num">${e.w}-${e.l}</td><td class="muted">${esc(e.as.join("、"))}</td></tr>`).join("")}</tbody></table></div>`
+          : '<div class="state">這支隊伍（含前身隊名）在 2014 年起沒有世界賽、MSI、First Stand 或電競世界盃的紀錄。</div>'}
+      </section>`;
+  }
+
   /* ---------- 路由 ---------- */
   function route() {
     const h = location.hash || "#/";
+    const sect = h.startsWith("#/odds") ? "#/odds" : h.startsWith("#/record") ? "#/record" : h.startsWith("#/about") ? "#/about" : "#/";
     document.querySelectorAll(".head-nav a").forEach((a) => {
-      const on = (a.getAttribute("href") === "#/about") === h.startsWith("#/about");
-      a.toggleAttribute("aria-current", on); if (on) a.setAttribute("aria-current", "page");
+      if (a.getAttribute("href") === sect) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
     if (!D) return;
     if (h.startsWith("#/m/")) renderMatch(decodeURIComponent(h.slice(4)));
+    else if (h.startsWith("#/t/")) renderTeam(decodeURIComponent(h.slice(4)));
+    else if (h.startsWith("#/odds")) renderOdds();
+    else if (h.startsWith("#/record")) renderRecord();
     else if (h.startsWith("#/about")) renderAbout();
     else renderSchedule();
     if (h !== "#/" && h !== "") { window.scrollTo(0, 0); document.getElementById("main").focus({ preventScroll: true }); }

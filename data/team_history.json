@@ -1,0 +1,1334 @@
+{
+ "C9": [
+  {
+   "event": "2025 電競世界盃",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 1,
+   "l": 3,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2023 MSI",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 1,
+   "l": 5,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 7,
+   "l": 7,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2021 MSI",
+   "w": 7,
+   "l": 9,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 2,
+   "l": 4,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2018 世界賽",
+   "w": 10,
+   "l": 4,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2017 世界賽",
+   "w": 8,
+   "l": 4,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2016 世界賽",
+   "w": 3,
+   "l": 4,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2015 世界賽",
+   "w": 3,
+   "l": 4,
+   "as": [
+    "Cloud9"
+   ]
+  },
+  {
+   "event": "2014 世界賽",
+   "w": 4,
+   "l": 4,
+   "as": [
+    "Cloud9"
+   ]
+  }
+ ],
+ "T1": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 3,
+   "l": 3,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 4,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 7,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2024 電競世界盃",
+   "w": 3,
+   "l": 0,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 6,
+   "l": 1,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2024 MSI",
+   "w": 5,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 6,
+   "l": 1,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2023 MSI",
+   "w": 2,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 7,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2022 MSI",
+   "w": 14,
+   "l": 4,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 6,
+   "l": 2,
+   "as": [
+    "T1"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 6,
+   "l": 2,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2019 MSI",
+   "w": 7,
+   "l": 4,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2017 世界賽",
+   "w": 7,
+   "l": 2,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2017 MSI",
+   "w": 10,
+   "l": 2,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2016 世界賽",
+   "w": 8,
+   "l": 1,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2016 MSI",
+   "w": 8,
+   "l": 4,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2015 世界賽",
+   "w": 9,
+   "l": 0,
+   "as": [
+    "SK Telecom T1"
+   ]
+  },
+  {
+   "event": "2015 MSI",
+   "w": 6,
+   "l": 1,
+   "as": [
+    "SK Telecom T1"
+   ]
+  }
+ ],
+ "IG": [
+  {
+   "event": "2025 世界賽",
+   "w": 0,
+   "l": 1,
+   "as": [
+    "Invictus Gaming"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 5,
+   "l": 3,
+   "as": [
+    "Invictus Gaming"
+   ]
+  },
+  {
+   "event": "2019 MSI",
+   "w": 9,
+   "l": 2,
+   "as": [
+    "Invictus Gaming"
+   ]
+  },
+  {
+   "event": "2018 世界賽",
+   "w": 8,
+   "l": 2,
+   "as": [
+    "Invictus Gaming"
+   ]
+  },
+  {
+   "event": "2015 世界賽",
+   "w": 2,
+   "l": 4,
+   "as": [
+    "Invictus Gaming"
+   ]
+  }
+ ],
+ "HLE": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 4,
+   "l": 1,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2025 First Stand",
+   "w": 6,
+   "l": 0,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 8,
+   "l": 5,
+   "as": [
+    "Hanwha Life Esports"
+   ]
+  },
+  {
+   "event": "2016 世界賽",
+   "w": 6,
+   "l": 3,
+   "as": [
+    "ROX Tigers"
+   ]
+  },
+  {
+   "event": "2015 世界賽",
+   "w": 6,
+   "l": 3,
+   "as": [
+    "KOO Tigers"
+   ]
+  }
+ ],
+ "G2": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 2,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2026 First Stand",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2024 電競世界盃",
+   "w": 1,
+   "l": 1,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2024 MSI",
+   "w": 2,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2023 MSI",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 1,
+   "l": 5,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2022 MSI",
+   "w": 13,
+   "l": 6,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2020 世界賽",
+   "w": 5,
+   "l": 4,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 7,
+   "l": 3,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2019 MSI",
+   "w": 7,
+   "l": 5,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2018 世界賽",
+   "w": 10,
+   "l": 5,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2017 世界賽",
+   "w": 3,
+   "l": 3,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2017 MSI",
+   "w": 5,
+   "l": 7,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2016 世界賽",
+   "w": 1,
+   "l": 5,
+   "as": [
+    "G2 Esports"
+   ]
+  },
+  {
+   "event": "2016 MSI",
+   "w": 2,
+   "l": 8,
+   "as": [
+    "G2 Esports"
+   ]
+  }
+ ],
+ "GEN": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 4,
+   "l": 1,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2026 First Stand",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 3,
+   "l": 0,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 4,
+   "l": 2,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 4,
+   "l": 0,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2024 電競世界盃",
+   "w": 0,
+   "l": 1,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 4,
+   "l": 1,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2024 MSI",
+   "w": 4,
+   "l": 0,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 3,
+   "l": 1,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2023 MSI",
+   "w": 2,
+   "l": 2,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 7,
+   "l": 2,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 6,
+   "l": 4,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2020 世界賽",
+   "w": 5,
+   "l": 2,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2018 世界賽",
+   "w": 1,
+   "l": 5,
+   "as": [
+    "Gen.G"
+   ]
+  },
+  {
+   "event": "2017 世界賽",
+   "w": 7,
+   "l": 2,
+   "as": [
+    "Samsung Galaxy"
+   ]
+  },
+  {
+   "event": "2016 世界賽",
+   "w": 7,
+   "l": 2,
+   "as": [
+    "Samsung Galaxy"
+   ]
+  }
+ ],
+ "MKOI": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "Movistar KOI"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 2,
+   "l": 2,
+   "as": [
+    "Movistar KOI"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "Movistar KOI"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "Movistar KOI"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "MAD Lions KOI"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 1,
+   "l": 3,
+   "as": [
+    "MAD Lions"
+   ]
+  },
+  {
+   "event": "2023 MSI",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "MAD Lions"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 4,
+   "l": 3,
+   "as": [
+    "MAD Lions"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 4,
+   "l": 5,
+   "as": [
+    "MAD Lions"
+   ]
+  },
+  {
+   "event": "2021 MSI",
+   "w": 10,
+   "l": 7,
+   "as": [
+    "MAD Lions"
+   ]
+  },
+  {
+   "event": "2020 世界賽",
+   "w": 2,
+   "l": 4,
+   "as": [
+    "MAD Lions"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 8,
+   "l": 5,
+   "as": [
+    "Splyce"
+   ]
+  },
+  {
+   "event": "2016 世界賽",
+   "w": 1,
+   "l": 5,
+   "as": [
+    "Splyce"
+   ]
+  }
+ ],
+ "TLAW": [
+  {
+   "event": "2026 MSI",
+   "w": 2,
+   "l": 2,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2025 First Stand",
+   "w": 1,
+   "l": 3,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2024 電競世界盃",
+   "w": 1,
+   "l": 1,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2024 MSI",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 0,
+   "l": 3,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 3,
+   "l": 4,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2020 世界賽",
+   "w": 7,
+   "l": 4,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 3,
+   "l": 3,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2019 MSI",
+   "w": 6,
+   "l": 7,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2018 世界賽",
+   "w": 3,
+   "l": 3,
+   "as": [
+    "Team Liquid"
+   ]
+  },
+  {
+   "event": "2018 MSI",
+   "w": 4,
+   "l": 7,
+   "as": [
+    "Team Liquid"
+   ]
+  }
+ ],
+ "DK": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 5,
+   "l": 1,
+   "as": [
+    "Dplus Kia"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "Dplus Kia"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "Dplus Kia"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 5,
+   "l": 3,
+   "as": [
+    "DWG KIA"
+   ]
+  },
+  {
+   "event": "2021 世界賽",
+   "w": 8,
+   "l": 1,
+   "as": [
+    "DWG KIA"
+   ]
+  },
+  {
+   "event": "2021 MSI",
+   "w": 14,
+   "l": 4,
+   "as": [
+    "DWG KIA"
+   ]
+  },
+  {
+   "event": "2020 世界賽",
+   "w": 8,
+   "l": 1,
+   "as": [
+    "DAMWON Gaming"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 10,
+   "l": 2,
+   "as": [
+    "DAMWON Gaming"
+   ]
+  }
+ ],
+ "LOS": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "MIBR.LOS"
+   ]
+  },
+  {
+   "event": "2019 世界賽",
+   "w": 1,
+   "l": 4,
+   "as": [
+    "Flamengo Esports"
+   ]
+  }
+ ],
+ "TES": [
+  {
+   "event": "2026 MSI",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 4,
+   "l": 3,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2025 First Stand",
+   "w": 1,
+   "l": 4,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2024 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2024 MSI",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 3,
+   "l": 3,
+   "as": [
+    "Top Esports"
+   ]
+  },
+  {
+   "event": "2020 世界賽",
+   "w": 6,
+   "l": 2,
+   "as": [
+    "Top Esports"
+   ]
+  }
+ ],
+ "CFO": [
+  {
+   "event": "2025 電競世界盃",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "CTBC Flying Oyster"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 3,
+   "l": 3,
+   "as": [
+    "CTBC Flying Oyster"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "CTBC Flying Oyster"
+   ]
+  },
+  {
+   "event": "2025 First Stand",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "CTBC Flying Oyster"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "CTBC Flying Oyster"
+   ]
+  },
+  {
+   "event": "2022 世界賽",
+   "w": 1,
+   "l": 5,
+   "as": [
+    "CTBC Flying Oyster"
+   ]
+  }
+ ],
+ "BLG": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 3,
+   "l": 1,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2026 First Stand",
+   "w": 4,
+   "l": 0,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 0,
+   "l": 1,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 2,
+   "l": 3,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 4,
+   "l": 2,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2024 電競世界盃",
+   "w": 0,
+   "l": 1,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2024 世界賽",
+   "w": 5,
+   "l": 3,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2024 MSI",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 4,
+   "l": 3,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  },
+  {
+   "event": "2023 MSI",
+   "w": 6,
+   "l": 2,
+   "as": [
+    "Bilibili Gaming"
+   ]
+  }
+ ],
+ "TSW": [
+  {
+   "event": "2026 MSI",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "Team Secret Whales"
+   ]
+  },
+  {
+   "event": "2026 First Stand",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "Team Secret Whales"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 1,
+   "l": 3,
+   "as": [
+    "Team Secret Whales"
+   ]
+  },
+  {
+   "event": "2023 世界賽",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "Team Whales"
+   ]
+  }
+ ],
+ "KC": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 4,
+   "l": 2,
+   "as": [
+    "Karmine Corp"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "Karmine Corp"
+   ]
+  },
+  {
+   "event": "2025 First Stand",
+   "w": 2,
+   "l": 4,
+   "as": [
+    "Karmine Corp"
+   ]
+  }
+ ],
+ "FUR": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "FURIA"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "FURIA"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "FURIA"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "FURIA"
+   ]
+  }
+ ],
+ "AL": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "AG.AL"
+   ]
+  },
+  {
+   "event": "2025 電競世界盃",
+   "w": 2,
+   "l": 1,
+   "as": [
+    "AG.AL"
+   ]
+  },
+  {
+   "event": "2025 世界賽",
+   "w": 3,
+   "l": 1,
+   "as": [
+    "Anyone's Legend"
+   ]
+  },
+  {
+   "event": "2025 MSI",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "Anyone's Legend"
+   ]
+  }
+ ],
+ "LYON": [
+  {
+   "event": "2026 電競世界盃",
+   "w": 0,
+   "l": 2,
+   "as": [
+    "LYON (2024 American Team)"
+   ]
+  },
+  {
+   "event": "2026 MSI",
+   "w": 3,
+   "l": 2,
+   "as": [
+    "LYON (2024 American Team)"
+   ]
+  },
+  {
+   "event": "2026 First Stand",
+   "w": 1,
+   "l": 2,
+   "as": [
+    "LYON (2024 American Team)"
+   ]
+  }
+ ]
+}
