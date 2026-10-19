@@ -2,7 +2,7 @@ name: 重建歷史戰績
 on:
   workflow_dispatch:
   push:
-    paths: ['scripts/**']
+    paths: ['scripts/build_history.py', 'scripts/teams.json', 'scripts/ratings.py', 'scripts/update.py', 'scripts/common.py']
 permissions:
   contents: write
 concurrency: { group: update-data, cancel-in-progress: false }
