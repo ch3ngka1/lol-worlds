@@ -1,0 +1,21 @@
+name: 抓每局資料（手動）
+on:
+  workflow_dispatch:
+  push:
+    paths: ['scripts/build_games.py']
+permissions:
+  contents: write
+concurrency: { group: update-data, cancel-in-progress: false }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/build_games.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/games.json
+          git diff --cached --quiet && exit 0
+          git commit -m "每局資料 [skip ci]" && git pull --rebase && git push
