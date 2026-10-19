@@ -5,12 +5,13 @@ import json, time, urllib.parse, urllib.request
 EXPORT = "https://lol.fandom.com/wiki/Special:CargoExport"
 UA = "lol-worlds-fan-site/1.0 (https://github.com/ch3ngka1/lol-worlds)"
 GAP = 4
+RETRIES = 4
 _last = [0.0]
 
 def _get(params):
     url = EXPORT + "?" + urllib.parse.urlencode(params)
     last_err = None
-    for attempt in range(6):
+    for attempt in range(RETRIES):
         wait = GAP - (time.time() - _last[0])
         if wait > 0:
             time.sleep(wait)
@@ -24,7 +25,7 @@ def _get(params):
             last_err = str(data)[:300]
         except Exception as e:
             last_err = str(e)
-        backoff = min(20 * (2 ** attempt), 240)
+        backoff = min(15 * (2 ** attempt), 120)
         print(f"  ! {last_err} -> 等 {backoff}s 再試", flush=True)
         time.sleep(backoff)
     raise RuntimeError("Leaguepedia 匯出失敗：" + str(last_err))

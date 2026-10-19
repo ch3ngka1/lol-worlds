@@ -1,12 +1,14 @@
-import json, sys
+import json, sys, time
 sys.path.insert(0, "scripts")
-from cargo import cargo
+import cargo as C
+C.RETRIES = 2
 qs = json.load(open("scripts/explore.json"))
 out = {}
 for name, q in qs.items():
-    print("query", name, flush=True)
+    t = time.time(); print("query", name, flush=True)
     try:
-        out[name] = cargo(**q)
+        out[name] = C.cargo(**q)
     except Exception as e:
         out[name] = {"error": str(e)}
-json.dump(out, open("explore-output.json", "w"), ensure_ascii=False, indent=1)
+    print("  done", round(time.time()-t), "s", flush=True)
+    json.dump(out, open("explore-output.json", "w"), ensure_ascii=False, indent=1)
