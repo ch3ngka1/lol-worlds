@@ -1,0 +1,46 @@
+== export UA -I
+HTTP/2 301 
+date: Mon, 19 Oct 2026 07:14:59 GMT
+content-type: text/html; charset=UTF-8
+content-length: 0
+location: https://lol.fandom.com/wiki/Special:CargoExport?tables=MatchSchedule&fields=Team1%2CTeam2%2CWinner&where=OverviewPage+LIKE+%222026+Season+World+Championship%25%22&limit=3&format=json
+cf-ray: a4cdfd341ea0fc18-IAD
+cf-cache-status: MISS
+cache-control: private, s-maxage=0, max-age=0, must-revalidate
+last-modified: Mon, 19 Oct 2026 07:14:59 GMT
+server: cloudflare
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Accept-Encoding, X-Mobile-App, X-Ssexp, Cookie
+nel: {"report_to":"nel","max_age":604800,"failure_fraction":0.01}
+report-to: {"endpoints":[{"url":"https://services.fandom.com/browser-errors/report"}],"group":"nel","include_subdomains":true,"max_age":604800}
+reporting-endpoints: nel="https://services.fandom.com/browser-errors/report"
+server-timing: beacon;desc="BGFzIHboRZ", b2;desc="lvDvBsHvco.1792394099868", rayid;desc="a4cdfd341ea0fc18", dc;desc="res", roaa;desc="active", roaadc;desc="res", roaareason;desc="closest_datacenter", roaavariant;desc="none"
+x-datacenter: RES
+x-orig-cache-control: private, s-maxage=0, max-age=0, must-revalidate
+x-request-id: a4cdfd341ea0fc18-IAD
+accept-ch: 
+== export -L
+200 application/json https://lol.fandom.com/wiki/Special:CargoExport?tables=MatchSchedule&fields=Team1%2CTeam2%2CWinner&where=OverviewPage+LIKE+%222026+Season+World+Championship%25%22&limit=3&format=json 1
+[
+    {
+        "Team1": "Anyone's Legend",
+        "Team2": "Karmine Corp",
+        "Winner": null
+    },
+    {
+        "Team1": "Bilibili Gaming",
+        "Team2": "Movistar KOI",
+        "Winner": null
+    },
+    {
+        "Team1": "Cloud9",
+        "Team2": "Karmine Corp",
+        "Winner": 2
+    }
+]
+== export browser UA
+301 text/html; charset=UTF-8 0.071996
+
+== api
+200 0.110430
+{"error":{"code":"ratelimited","info":"You've exceeded your rate limit. Please wait some time and try again.","*":"See https://lol.fandom.com/api.php for API usage. Subscribe to the mediawiki-api-announce mailing list at &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wi
