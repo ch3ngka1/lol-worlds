@@ -1,35 +1,3 @@
 {
- "tourneys": {
-  "tables": "Tournaments",
-  "fields": "Name,OverviewPage,DateStart,League",
-  "where": "(League LIKE \"%World Championship%\" OR League LIKE \"%Mid-Season Invitational%\")",
-  "order_by": "DateStart",
-  "page": 200
- },
- "players2026": {
-  "tables": "TournamentPlayers",
-  "fields": "Team,Link,Role,OverviewPage",
-  "where": "OverviewPage LIKE \"2026 Season World Championship%\"",
-  "page": 500
- },
- "sched2026": {
-  "tables": "MatchSchedule",
-  "fields": "Team1,Team2,Team1Score,Team2Score,Winner,DateTime_UTC,BestOf,Tab,Round,OverviewPage,MatchId",
-  "where": "OverviewPage LIKE \"2026 Season World Championship%\"",
-  "order_by": "DateTime_UTC",
-  "page": 500
- },
- "renames": {
-  "tables": "TeamRenames",
-  "fields": "Date,OriginalName,NewName,Verb",
-  "order_by": "Date",
-  "page": 500,
-  "max_rows": 6000
- },
- "teams": {
-  "tables": "Teams",
-  "fields": "Name,Short,Region,OverviewPage,IsDisbanded,RenamedTo",
-  "where": "Short IN (\"AL\",\"BLG\",\"TES\",\"IG\",\"GEN\",\"HLE\",\"T1\",\"DK\",\"G2\",\"MKOI\",\"KC\",\"TL\",\"TLAW\",\"LYON\",\"C9\",\"TSW\",\"CFO\",\"MVK\",\"LOS\",\"FUR\",\"FURIA\")",
-  "page": 200
- }
+ "intl": {"tables":"MatchSchedule","fields":"Team1,Team2,Team1Score,Team2Score,Winner,DateTime_UTC,BestOf,Tab,OverviewPage,MatchId,FF","where":"(OverviewPage LIKE \"%Season World Championship%\" OR OverviewPage LIKE \"%Mid-Season Invitational%\") AND OverviewPage NOT LIKE \"%Qualifiers%\"","order_by":"DateTime_UTC","page":500,"max_rows":8000}
 }
