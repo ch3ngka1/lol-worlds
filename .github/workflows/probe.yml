@@ -1,0 +1,17 @@
+name: probe-data-sources
+on:
+  push:
+    paths: ['.github/workflows/probe.yml']
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Leaguepedia cargo API
+        run: |
+          for i in 1 2 3; do
+            curl -sS -A "lol-worlds-fan-site (github.com/ch3ngka1/lol-worlds)" "https://lol.fandom.com/api.php?action=cargoquery&format=json&tables=ScoreboardGames&fields=Team1,Team2,WinTeam,Tournament,DateTime_UTC&where=Tournament%20LIKE%20%22Worlds%202025%25%22&limit=5" | head -c 600; echo; sleep 5
+          done
+      - name: Leaguepedia 2026 worlds schedule
+        run: |
+          curl -sS -A "lol-worlds-fan-site (github.com/ch3ngka1/lol-worlds)" "https://lol.fandom.com/api.php?action=cargoquery&format=json&tables=MatchSchedule&fields=Team1,Team2,Team1Score,Team2Score,Winner,DateTime_UTC,OverviewPage&where=OverviewPage%20LIKE%20%222026%20Season%20World%20Championship%25%22&order_by=DateTime_UTC&limit=20" | head -c 2500; echo
