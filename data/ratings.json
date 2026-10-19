@@ -1,81 +1,100 @@
 {
- "method": "實力分數（Elo 制）：只用國際賽的系列賽勝負計算。\n\n- 採計世界賽、MSI、First Stand（Riot 官方國際賽）與電競世界盃（非 Riot 官方的邀請賽，權重 0.75）。\n- 每支隊伍從 1500 分起算；勝了加分、輸了扣分，贏強隊加得多。\n- Bo1 / Bo3 / Bo5 的權重不同（K = 20 / 28 / 36）。\n- 每到新的一年，分數往「所屬賽區平均」拉回 1/3，反映陣容變動。\n- 從沒打過國際賽的隊伍，以同賽區隊伍的平均分數起算。",
+ "method": "實力分數（Elo 制）：國際賽 + 各隊所屬聯賽的系列賽勝負一起計算。\n\n- 國際賽：世界賽、MSI、First Stand 全額計算；電競世界盃（非 Riot 官方）算 0.75 倍。\n- 聯賽：LCK、LPL、LEC、LCS、LCP、CBLOL 等 2023 年起的比賽，算 0.5 倍。\n  聯賽比賽讓同賽區隊伍拉開差距；國際賽決定各賽區之間誰強。\n- 每支隊伍從 1500 分起算（新隊伍以同賽區平均起算）；勝了加分、輸了扣分，贏強隊加得多。\n- Bo1 / Bo3 / Bo5 的基本權重不同（K = 20 / 28 / 36）。\n- 參數（聯賽 0.5 倍、不做年度回歸）是用 2023-10～2025-06 的國際賽回測挑選，\n  再用 2025-07 之後的國際賽驗證過，比只看國際賽準。",
  "teams": {
-  "AL": {
-   "elo": 1667.8,
-   "intlSeries": 15
-  },
-  "BLG": {
-   "elo": 1716.5,
-   "intlSeries": 52
-  },
-  "TES": {
-   "elo": 1567.1,
-   "intlSeries": 41
-  },
-  "IG": {
-   "elo": 1621.6,
-   "intlSeries": 36
-  },
-  "GEN": {
-   "elo": 1769.1,
-   "intlSeries": 89
-  },
-  "HLE": {
-   "elo": 1743.4,
-   "intlSeries": 58
-  },
-  "T1": {
-   "elo": 1729.7,
-   "intlSeries": 169
-  },
-  "DK": {
-   "elo": 1718.3,
-   "intlSeries": 72
-  },
-  "G2": {
-   "elo": 1579.3,
-   "intlSeries": 153
-  },
-  "MKOI": {
-   "elo": 1489.8,
-   "intlSeries": 82
-  },
-  "KC": {
-   "elo": 1592.9,
-   "intlSeries": 18
-  },
-  "TLAW": {
-   "elo": 1512.1,
-   "intlSeries": 75
+  "MVK": {
+   "elo": 1600.9,
+   "intlSeries": 4,
+   "allSeries": 29
   },
   "LYON": {
-   "elo": 1501.9,
-   "intlSeries": 10
-  },
-  "C9": {
-   "elo": 1447.4,
-   "intlSeries": 101
-  },
-  "TSW": {
-   "elo": 1446.3,
-   "intlSeries": 12
-  },
-  "CFO": {
-   "elo": 1498.6,
-   "intlSeries": 26
-  },
-  "MVK": {
-   "elo": 1475.8,
-   "intlSeries": 4
+   "elo": 1627.5,
+   "intlSeries": 10,
+   "allSeries": 55
   },
   "LOS": {
-   "elo": 1473.2,
-   "intlSeries": 8
+   "elo": 1547.9,
+   "intlSeries": 8,
+   "allSeries": 120
+  },
+  "AL": {
+   "elo": 1796.9,
+   "intlSeries": 15,
+   "allSeries": 184
+  },
+  "GEN": {
+   "elo": 2014.8,
+   "intlSeries": 89,
+   "allSeries": 257
+  },
+  "G2": {
+   "elo": 1767.8,
+   "intlSeries": 153,
+   "allSeries": 311
   },
   "FUR": {
-   "elo": 1410.1,
-   "intlSeries": 12
+   "elo": 1524.1,
+   "intlSeries": 12,
+   "allSeries": 149
+  },
+  "IG": {
+   "elo": 1670.5,
+   "intlSeries": 36,
+   "allSeries": 197
+  },
+  "TLAW": {
+   "elo": 1651.2,
+   "intlSeries": 75,
+   "allSeries": 200
+  },
+  "BLG": {
+   "elo": 1927.2,
+   "intlSeries": 52,
+   "allSeries": 233
+  },
+  "TES": {
+   "elo": 1728.5,
+   "intlSeries": 41,
+   "allSeries": 221
+  },
+  "CFO": {
+   "elo": 1656.8,
+   "intlSeries": 26,
+   "allSeries": 155
+  },
+  "HLE": {
+   "elo": 1924.1,
+   "intlSeries": 58,
+   "allSeries": 227
+  },
+  "KC": {
+   "elo": 1742.8,
+   "intlSeries": 18,
+   "allSeries": 126
+  },
+  "C9": {
+   "elo": 1597.6,
+   "intlSeries": 101,
+   "allSeries": 225
+  },
+  "MKOI": {
+   "elo": 1608.1,
+   "intlSeries": 82,
+   "allSeries": 244
+  },
+  "TSW": {
+   "elo": 1692.9,
+   "intlSeries": 12,
+   "allSeries": 135
+  },
+  "DK": {
+   "elo": 1854.0,
+   "intlSeries": 72,
+   "allSeries": 244
+  },
+  "T1": {
+   "elo": 1880.3,
+   "intlSeries": 169,
+   "allSeries": 341
   }
  }
 }

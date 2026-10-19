@@ -1,70 +1,68 @@
-"""實力分數（Elo 制）：只用國際賽的系列賽勝負計算。
+"""實力分數（Elo 制）：國際賽 + 各隊所屬聯賽的系列賽勝負一起計算。
 
-- 採計世界賽、MSI、First Stand（Riot 官方國際賽）與電競世界盃（非 Riot 官方的邀請賽，權重 0.75）。
-- 每支隊伍從 1500 分起算；勝了加分、輸了扣分，贏強隊加得多。
-- Bo1 / Bo3 / Bo5 的權重不同（K = 20 / 28 / 36）。
-- 每到新的一年，分數往「所屬賽區平均」拉回 1/3，反映陣容變動。
-- 從沒打過國際賽的隊伍，以同賽區隊伍的平均分數起算。
+- 國際賽：世界賽、MSI、First Stand 全額計算；電競世界盃（非 Riot 官方）算 0.75 倍。
+- 聯賽：LCK、LPL、LEC、LCS、LCP、CBLOL 等 2023 年起的比賽，算 0.5 倍。
+  聯賽比賽讓同賽區隊伍拉開差距；國際賽決定各賽區之間誰強。
+- 每支隊伍從 1500 分起算（新隊伍以同賽區平均起算）；勝了加分、輸了扣分，贏強隊加得多。
+- Bo1 / Bo3 / Bo5 的基本權重不同（K = 20 / 28 / 36）。
+- 參數（聯賽 0.5 倍、不做年度回歸）是用 2023-10～2025-06 的國際賽回測挑選，
+  再用 2025-07 之後的國際賽驗證過，比只看國際賽準。
 """
 from collections import defaultdict
 
 K = {1: 20, 3: 28, 5: 36}
-KIND_WEIGHT = {"ewc": 0.75}
+KIND_WEIGHT = {"ewc": 0.75, "dom": 0.5}
 BASE = 1500.0
+LEAGUE_NORM = {"LTA North": "LCS", "LTA South": "CBLOL"}
 
 def expected(ra, rb):
     return 1.0 / (1.0 + 10 ** ((rb - ra) / 400.0))
 
-def compute_ratings(teams, history, schedule):
-    league = {t["code"]: t["league"] for t in teams}
-    r = defaultdict(lambda: BASE)            # key：隊伍代碼，或沒有對應代碼的舊隊名
+def compute_ratings(teams, history, schedule, domestic=()):
+    lg = {t["code"]: t["league"] for t in teams}
+    fixed = set(lg)
+    r = {}
     played = defaultdict(int)
-    year_seen = None
+    intl = defaultdict(int)
 
     def key(code, name):
         return code or ("~" + name)
 
-    def league_avg(lg):
-        vals = [r[c] for c, l in league.items() if l == lg and played[c] > 0]
+    def league_avg(l):
+        vals = [r[k] for k in r if lg.get(k) == l and played[k] > 0]
         return sum(vals) / len(vals) if vals else BASE
 
-    def new_year():
-        snapshot = {}
-        for c in list(r.keys()):
-            lg = league.get(c)
-            target = league_avg(lg) if lg else BASE
-            snapshot[c] = r[c] + (target - r[c]) / 3.0
-        r.update(snapshot)
-
-    def ensure(k):
-        if k not in r and k in league and played[k] == 0:
-            r[k] = league_avg(league[k])
+    def ensure(k, l=None):
+        if l and k not in fixed:
+            lg.setdefault(k, l)
+        if k not in r:
+            r[k] = league_avg(lg[k]) if k in lg else BASE
 
     events = []
     for s in history:
-        events.append((s["date"], key(s["c1"], s["t1"]), key(s["c2"], s["t2"]), s["w"], s.get("bo") or 3,
-                       KIND_WEIGHT.get(s.get("kind"), 1.0)))
+        events.append((s["date"], 1, key(s["c1"], s["t1"]), key(s["c2"], s["t2"]), s["w"],
+                       s.get("bo") or 3, s.get("kind") or "worlds", None))
     for m in schedule:
         if m["w"] and m["c1"] and m["c2"]:
-            events.append((m["time"][:10], m["c1"], m["c2"], m["w"], m.get("bo") or 3, 1.0))
-    events.sort(key=lambda e: e[0])
+            events.append((m["time"][:10], 1, m["c1"], m["c2"], m["w"], m.get("bo") or 3, "worlds", None))
+    for s in domestic:
+        events.append((s["date"], 0, key(s["c1"], s["t1"]), key(s["c2"], s["t2"]), s["w"],
+                       s.get("bo") or 3, "dom", LEAGUE_NORM.get(s["league"], s["league"])))
+    events.sort(key=lambda e: (e[0], e[1]))   # 同一天先算聯賽、再算國際賽
 
-    for date, a, b, w, bo, wt in events:
-        y = date[:4]
-        if year_seen and y != year_seen:
-            new_year()
-        year_seen = y
-        ensure(a); ensure(b)
-        ea = expected(r[a], r[b])
-        k = K.get(int(bo), 28) * wt
-        sa = 1.0 if w == 1 else 0.0
-        r[a] += k * (sa - ea)
-        r[b] -= k * (sa - ea)
+    for date, is_intl, a, b, w, bo, kind, l in events:
+        ensure(a, l); ensure(b, l)
+        p = expected(r[a], r[b])
+        k = K.get(int(bo), 28) * KIND_WEIGHT.get(kind, 1.0)
+        s = 1.0 if w == 1 else 0.0
+        r[a] += k * (s - p)
+        r[b] -= k * (s - p)
         played[a] += 1; played[b] += 1
+        if is_intl:
+            intl[a] += 1; intl[b] += 1
 
-    # 進入 2026 年後若尚未經過年度回歸（今年沒比賽的情況已在上面處理）
     out = {}
-    for c in league:
+    for c in fixed:
         ensure(c)
-        out[c] = {"elo": round(r[c], 1), "intlSeries": played[c]}
+        out[c] = {"elo": round(r[c], 1), "intlSeries": intl[c], "allSeries": played[c]}
     return {"method": __doc__.strip(), "teams": out}

@@ -220,8 +220,8 @@
         <div class="prob-labels"><span>${esc(a)} 勝</span><span>${esc(b)} 勝</span></div>
         <p class="sr-only">勝率參考：${esc(a)} ${pct(P.p)}%，${esc(b)} ${100 - pct(P.p)}%</p>
         <ul class="factors">
-          <li><b>國際賽實力分數</b><span class="val">${Math.round(P.ra)} : ${Math.round(P.rb)}</span>
-            <span class="why">依兩隊（含前身隊名）在世界賽、MSI、First Stand、電競世界盃每場系列賽勝負計算，本屆結果也會即時算進去。只看這項是 ${esc(a)} ${pct(P.base)}%。${ra.intlSeries < 10 || rb.intlSeries < 10 ? "其中一隊國際賽經驗少，分數主要參考同賽區隊伍的平均，誤差較大。" : ""}</span></li>
+          <li><b>實力分數</b><span class="val">${Math.round(P.ra)} : ${Math.round(P.rb)}</span>
+            <span class="why">依兩隊（含前身隊名）在國際賽（世界賽、MSI、First Stand、電競世界盃）與 2023 年起所屬聯賽的系列賽勝負計算，本屆結果也會即時算進去。只看這項是 ${esc(a)} ${pct(P.base)}%。${ra.intlSeries < 10 || rb.intlSeries < 10 ? "其中一隊國際賽經驗少，跨賽區的強弱主要靠同賽區其他隊伍的國際賽成績推估，誤差較大。" : ""}</span></li>
           <li><b>過去交手修正</b><span class="val">${esc(adjTxt)}</span>
             <span class="why">${h.rows.length ? `${h.rows.length} 次交手，越久以前的比賽影響越小（每 2 年減半）。` : "兩隊從未在國際賽交手，不做修正。"}</span></li>
           <li><b>本屆戰績</b><span class="val">${fa.res.length || fb.res.length ? `${fa.w}-${fa.l} : ${fb.w}-${fb.l}` : "尚未出賽"}</span>
@@ -304,9 +304,12 @@
       <p>每隊名稱旁標示的是 2026 世界賽的賽區種子序（例如「LCK 1 號種子」），以及取得資格的方式，來源同樣是 Leaguepedia。</p>
       <ul>${Object.entries(D.teams).map(([c, t]) => `<li><b>${esc(c)}</b>：${esc(t.league)} ${esc(t.seed)} 號種子，${esc(t.qualified || "")}</li>`).join("")}</ul>
       <h2>勝率參考怎麼算</h2>
-      <p>主要依據是「國際賽實力分數」（Elo 制）：每支隊伍從 1500 分起算，在世界賽、MSI、First Stand、電競世界盃贏了加分、輸了扣分，贏強隊加得多、輸弱隊扣得多；Bo5 的影響比 Bo1 大。電競世界盃不是 Riot 官方賽事、也不影響世界賽資格，各隊重視程度可能不同，所以只算 0.75 倍的影響。每到新的一年，分數會往所屬賽區平均拉回三分之一，反映陣容變動。從沒打過國際賽的隊伍，以同賽區隊伍的平均起算。</p>
+      <p>主要依據是「實力分數」（Elo 制）：每支隊伍從 1500 分起算，贏了加分、輸了扣分，贏強隊加得多、輸弱隊扣得多；Bo5 的影響比 Bo1 大。</p>
+      <p>採計的比賽有兩種。一是國際賽：世界賽、MSI、First Stand 全額計算；電競世界盃不是 Riot 官方賽事、也不影響世界賽資格，各隊重視程度可能不同，所以算 0.75 倍。二是 2023 年起各隊在自己聯賽（LCK、LPL、LEC、LCS、LCP、CBLOL 等）的比賽，算 0.5 倍。聯賽比賽讓同賽區的隊伍拉開差距，國際賽則決定各賽區之間誰比較強。</p>
       <p>再用兩隊過去的交手紀錄做小幅修正（最多約 ±12%），越久以前的交手影響越小。最後結果限制在 5%～95% 之間。</p>
       <p>這只是根據過去勝負算出的參考值，沒有考慮版本、選手狀態、陣容異動，請不要當成真正的預測。</p>
+      <h2>準不準？（回測結果）</h2>
+      <p>拿 2023 年 10 月到 2026 年 10 月的 279 場國際賽系列賽回測，每場只用開打前已知的資料計算：被看好的一方實際贏了約 72%。但其中「同等級賽區互打」（例如 LCK 對 LPL）只猜中約 58%，接近擲硬幣；不同賽區對戰的準度，則跟「直接猜中韓隊伍」差不多。勝率參考適合當作聊天話題，不適合拿來下注。</p>
       <h2>聲明</h2>
       <p>本站為粉絲自製的非營利網站，與 Riot Games 及各戰隊無關，不使用 Riot 或戰隊的商標與 logo。</p>
       <p lang="en">2026 LoL Worlds Analysis was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>

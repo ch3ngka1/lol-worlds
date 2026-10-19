@@ -62,7 +62,9 @@ def main(offline=None):
     schedule = build_schedule(sched_rows, name2code)
     rosters = build_rosters(player_rows, name2code)
     history = json.load(open(os.path.join(DATA, "history.json"), encoding="utf-8"))["series"]
-    ratings = compute_ratings(teams, history, schedule)
+    dom_path = os.path.join(DATA, "domestic.json")
+    domestic = json.load(open(dom_path, encoding="utf-8"))["series"] if os.path.exists(dom_path) else []
+    ratings = compute_ratings(teams, history, schedule, domestic)
     changed = False
     changed |= write_json("schedule.json", {"matches": schedule})
     changed |= write_json("rosters.json", rosters)
