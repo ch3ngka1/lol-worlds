@@ -249,7 +249,7 @@
           const oldTxt = (olds[0] || olds[1]) ? `<span class="old">當時隊名：${esc(an)} vs ${esc(bn)}</span>` : "";
           const old = nowY - parseInt(s.date, 10) >= 4;
           return `<li class="${old ? "old-row" : ""}">
-            <span class="ev">${esc(s.event)}<br>${esc(s.stage || "")}${roundZh(s.round) ? "・" + esc(roundZh(s.round)) : ""}</span>
+            <span class="ev">${esc(s.event)}<br>${esc([s.stage, roundZh(s.round)].filter(Boolean).join("・"))}</span>
             <span class="teams"><span class="${aWon ? "w" : ""}">${esc(a)}</span> vs <span class="${aWon ? "" : "w"}">${esc(b)}</span>
               <span class="old">${esc(s.date)}・Bo${esc(s.bo || "?")}</span>${oldTxt}</span>
             <span class="sc" aria-label="${esc(a)} ${as} 比 ${bs}">${as ?? "-"}:${bs ?? "-"}</span></li>`;
