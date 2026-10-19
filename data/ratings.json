@@ -2,251 +2,6 @@
  "method": "實力分數（選手制 Elo）。\n\n怎麼算：\n- 用 2023 年起每一局的比賽（國際賽 + LCK、LPL、LEC、LCS、LCP、CBLOL 等聯賽）。\n- 每位選手各有一個分數；一局比賽中，隊伍實力 = 該局五名出場選手的平均分數。\n  贏了五人一起加分、輸了一起扣分，贏強隊加得多。換人、轉隊時，分數跟著選手走。\n- 國際賽（世界賽、MSI、First Stand）全額計算；電競世界盃 0.75 倍；聯賽 0.5 倍。每局 K = 8。\n- 新選手以所屬隊伍當時的分數起算；2023 年以前的國際賽系列賽只用來給隊伍打底。\n- 預測時：用本屆世界賽登錄名單中，每個位置最近有上場的那位選手，五人平均就是隊伍實力；\n  再把「單局勝率」換算成 Bo1 / Bo3 / Bo5 的系列賽勝率。\n- 參數是把 3,200 多種組合，用 2023-10～2026-10 的 275 場國際賽系列賽交叉回測挑出來的\n  （前半段挑、後半段驗，反過來也驗過）。經濟差、藍紅方、每年回歸、交手修正都試過，沒有幫助所以沒用。",
  "kGame": 8,
  "teams": {
-  "T1": {
-   "elo": 1794.7,
-   "lineup": [
-    {
-     "name": "Doran",
-     "role": "Top",
-     "elo": 1803.5,
-     "games": 563
-    },
-    {
-     "name": "Oner",
-     "role": "Jungle",
-     "elo": 1771.3,
-     "games": 631
-    },
-    {
-     "name": "Faker",
-     "role": "Mid",
-     "elo": 1800.5,
-     "games": 618
-    },
-    {
-     "name": "Peyz",
-     "role": "Bot",
-     "elo": 1827.0,
-     "games": 550
-    },
-    {
-     "name": "Keria",
-     "role": "Support",
-     "elo": 1771.0,
-     "games": 636
-    }
-   ]
-  },
-  "MVK": {
-   "elo": 1527.6,
-   "lineup": [
-    {
-     "name": "Kratos",
-     "role": "Top",
-     "elo": 1495.0,
-     "games": 188
-    },
-    {
-     "name": "Gury",
-     "role": "Jungle",
-     "elo": 1553.4,
-     "games": 309
-    },
-    {
-     "name": "Chika",
-     "role": "Mid",
-     "elo": 1505.3,
-     "games": 85
-    },
-    {
-     "name": "Harky",
-     "role": "Bot",
-     "elo": 1535.1,
-     "games": 128
-    },
-    {
-     "name": "SiuLoong",
-     "role": "Support",
-     "elo": 1549.4,
-     "games": 162
-    }
-   ]
-  },
-  "FUR": {
-   "elo": 1513.7,
-   "lineup": [
-    {
-     "name": "Guigo",
-     "role": "Top",
-     "elo": 1533.3,
-     "games": 270
-    },
-    {
-     "name": "Tatu",
-     "role": "Jungle",
-     "elo": 1503.6,
-     "games": 166
-    },
-    {
-     "name": "Tutsz",
-     "role": "Mid",
-     "elo": 1496.2,
-     "games": 243
-    },
-    {
-     "name": "Ayu",
-     "role": "Bot",
-     "elo": 1496.2,
-     "games": 264
-    },
-    {
-     "name": "JoJo",
-     "role": "Support",
-     "elo": 1539.3,
-     "games": 280
-    }
-   ]
-  },
-  "GEN": {
-   "elo": 1852.5,
-   "lineup": [
-    {
-     "name": "Kiin",
-     "role": "Top",
-     "elo": 1864.2,
-     "games": 542
-    },
-    {
-     "name": "Canyon",
-     "role": "Jungle",
-     "elo": 1902.3,
-     "games": 520
-    },
-    {
-     "name": "Chovy",
-     "role": "Mid",
-     "elo": 1945.6,
-     "games": 545
-    },
-    {
-     "name": "Ruler",
-     "role": "Bot",
-     "elo": 1797.6,
-     "games": 503
-    },
-    {
-     "name": "Duro",
-     "role": "Support",
-     "elo": 1752.9,
-     "games": 319
-    }
-   ]
-  },
-  "TSW": {
-   "elo": 1588.3,
-   "lineup": [
-    {
-     "name": "Pun",
-     "role": "Top",
-     "elo": 1528.7,
-     "games": 292
-    },
-    {
-     "name": "Hizto",
-     "role": "Jungle",
-     "elo": 1593.6,
-     "games": 177
-    },
-    {
-     "name": "Dire",
-     "role": "Mid",
-     "elo": 1593.6,
-     "games": 177
-    },
-    {
-     "name": "Eddie",
-     "role": "Bot",
-     "elo": 1600.5,
-     "games": 281
-    },
-    {
-     "name": "Bie",
-     "role": "Support",
-     "elo": 1625.1,
-     "games": 321
-    }
-   ]
-  },
-  "CFO": {
-   "elo": 1569.3,
-   "lineup": [
-    {
-     "name": "Rest",
-     "role": "Top",
-     "elo": 1529.7,
-     "games": 258
-    },
-    {
-     "name": "Shad0w",
-     "role": "Jungle",
-     "elo": 1734.5,
-     "games": 85
-    },
-    {
-     "name": "POUT",
-     "role": "Mid",
-     "elo": 1476.4,
-     "games": 77
-    },
-    {
-     "name": "Doggo",
-     "role": "Bot",
-     "elo": 1571.4,
-     "games": 347
-    },
-    {
-     "name": "Kino",
-     "role": "Support",
-     "elo": 1534.6,
-     "games": 149
-    }
-   ]
-  },
-  "TES": {
-   "elo": 1689.8,
-   "lineup": [
-    {
-     "name": "369",
-     "role": "Top",
-     "elo": 1799.5,
-     "games": 478
-    },
-    {
-     "name": "Tian",
-     "role": "Jungle",
-     "elo": 1687.5,
-     "games": 467
-    },
-    {
-     "name": "Creme",
-     "role": "Mid",
-     "elo": 1661.5,
-     "games": 556
-    },
-    {
-     "name": "JackeyLove",
-     "role": "Bot",
-     "elo": 1726.8,
-     "games": 514
-    },
-    {
-     "name": "Zhuo",
-     "role": "Support",
-     "elo": 1573.7,
-     "games": 393
-    }
-   ]
-  },
   "HLE": {
    "elo": 1791.0,
    "lineup": [
@@ -352,146 +107,6 @@
     }
    ]
   },
-  "MKOI": {
-   "elo": 1590.6,
-   "lineup": [
-    {
-     "name": "Myrwn",
-     "role": "Top",
-     "elo": 1585.2,
-     "games": 292
-    },
-    {
-     "name": "Elyoya",
-     "role": "Jungle",
-     "elo": 1585.2,
-     "games": 387
-    },
-    {
-     "name": "Jojopyun",
-     "role": "Mid",
-     "elo": 1612.1,
-     "games": 254
-    },
-    {
-     "name": "Supa",
-     "role": "Bot",
-     "elo": 1585.2,
-     "games": 292
-    },
-    {
-     "name": "Alvaro",
-     "role": "Support",
-     "elo": 1585.2,
-     "games": 292
-    }
-   ]
-  },
-  "G2": {
-   "elo": 1692.7,
-   "lineup": [
-    {
-     "name": "BrokenBlade",
-     "role": "Top",
-     "elo": 1713.2,
-     "games": 447
-    },
-    {
-     "name": "SkewMond",
-     "role": "Jungle",
-     "elo": 1714.1,
-     "games": 237
-    },
-    {
-     "name": "Caps",
-     "role": "Mid",
-     "elo": 1714.1,
-     "games": 452
-    },
-    {
-     "name": "Hans Sama",
-     "role": "Bot",
-     "elo": 1698.5,
-     "games": 438
-    },
-    {
-     "name": "Labrov",
-     "role": "Support",
-     "elo": 1623.6,
-     "games": 398
-    }
-   ]
-  },
-  "C9": {
-   "elo": 1554.2,
-   "lineup": [
-    {
-     "name": "Thanatos",
-     "role": "Top",
-     "elo": 1600.1,
-     "games": 177
-    },
-    {
-     "name": "Blaber",
-     "role": "Jungle",
-     "elo": 1600.1,
-     "games": 275
-    },
-    {
-     "name": "Loki",
-     "role": "Mid",
-     "elo": 1570.0,
-     "games": 124
-    },
-    {
-     "name": "Tactical",
-     "role": "Bot",
-     "elo": 1431.1,
-     "games": 119
-    },
-    {
-     "name": "Vulcan",
-     "role": "Support",
-     "elo": 1569.6,
-     "games": 196
-    }
-   ]
-  },
-  "TLAW": {
-   "elo": 1596.3,
-   "lineup": [
-    {
-     "name": "Morgan",
-     "role": "Top",
-     "elo": 1603.7,
-     "games": 361
-    },
-    {
-     "name": "Josedeodo",
-     "role": "Jungle",
-     "elo": 1564.6,
-     "games": 155
-    },
-    {
-     "name": "Quid",
-     "role": "Mid",
-     "elo": 1574.1,
-     "games": 250
-    },
-    {
-     "name": "Yeon",
-     "role": "Bot",
-     "elo": 1619.5,
-     "games": 306
-    },
-    {
-     "name": "CoreJJ",
-     "role": "Support",
-     "elo": 1619.5,
-     "games": 306
-    }
-   ]
-  },
   "LOS": {
    "elo": 1553.2,
    "lineup": [
@@ -562,38 +177,38 @@
     }
    ]
   },
-  "BLG": {
-   "elo": 1786.9,
+  "C9": {
+   "elo": 1554.2,
    "lineup": [
     {
-     "name": "Bin",
+     "name": "Thanatos",
      "role": "Top",
-     "elo": 1824.7,
-     "games": 621
+     "elo": 1600.1,
+     "games": 177
     },
     {
-     "name": "Xun",
+     "name": "Blaber",
      "role": "Jungle",
-     "elo": 1750.6,
-     "games": 529
+     "elo": 1600.1,
+     "games": 275
     },
     {
-     "name": "Knight",
+     "name": "Loki",
      "role": "Mid",
-     "elo": 1752.2,
-     "games": 359
+     "elo": 1570.0,
+     "games": 124
     },
     {
-     "name": "Viper",
+     "name": "Tactical",
      "role": "Bot",
-     "elo": 1788.8,
-     "games": 568
+     "elo": 1431.1,
+     "games": 119
     },
     {
-     "name": "ON",
+     "name": "Vulcan",
      "role": "Support",
-     "elo": 1818.1,
-     "games": 650
+     "elo": 1569.6,
+     "games": 196
     }
    ]
   },
@@ -632,6 +247,181 @@
     }
    ]
   },
+  "BLG": {
+   "elo": 1786.9,
+   "lineup": [
+    {
+     "name": "Bin",
+     "role": "Top",
+     "elo": 1824.7,
+     "games": 621
+    },
+    {
+     "name": "Xun",
+     "role": "Jungle",
+     "elo": 1750.6,
+     "games": 529
+    },
+    {
+     "name": "Knight",
+     "role": "Mid",
+     "elo": 1752.2,
+     "games": 359
+    },
+    {
+     "name": "Viper",
+     "role": "Bot",
+     "elo": 1788.8,
+     "games": 568
+    },
+    {
+     "name": "ON",
+     "role": "Support",
+     "elo": 1818.1,
+     "games": 650
+    }
+   ]
+  },
+  "T1": {
+   "elo": 1794.7,
+   "lineup": [
+    {
+     "name": "Doran",
+     "role": "Top",
+     "elo": 1803.5,
+     "games": 563
+    },
+    {
+     "name": "Oner",
+     "role": "Jungle",
+     "elo": 1771.3,
+     "games": 631
+    },
+    {
+     "name": "Faker",
+     "role": "Mid",
+     "elo": 1800.5,
+     "games": 618
+    },
+    {
+     "name": "Peyz",
+     "role": "Bot",
+     "elo": 1827.0,
+     "games": 550
+    },
+    {
+     "name": "Keria",
+     "role": "Support",
+     "elo": 1771.0,
+     "games": 636
+    }
+   ]
+  },
+  "TLAW": {
+   "elo": 1596.3,
+   "lineup": [
+    {
+     "name": "Morgan",
+     "role": "Top",
+     "elo": 1603.7,
+     "games": 361
+    },
+    {
+     "name": "Josedeodo",
+     "role": "Jungle",
+     "elo": 1564.6,
+     "games": 155
+    },
+    {
+     "name": "Quid",
+     "role": "Mid",
+     "elo": 1574.1,
+     "games": 250
+    },
+    {
+     "name": "Yeon",
+     "role": "Bot",
+     "elo": 1619.5,
+     "games": 306
+    },
+    {
+     "name": "CoreJJ",
+     "role": "Support",
+     "elo": 1619.5,
+     "games": 306
+    }
+   ]
+  },
+  "MVK": {
+   "elo": 1527.6,
+   "lineup": [
+    {
+     "name": "Kratos",
+     "role": "Top",
+     "elo": 1495.0,
+     "games": 188
+    },
+    {
+     "name": "Gury",
+     "role": "Jungle",
+     "elo": 1553.4,
+     "games": 309
+    },
+    {
+     "name": "Chika",
+     "role": "Mid",
+     "elo": 1505.3,
+     "games": 85
+    },
+    {
+     "name": "Harky",
+     "role": "Bot",
+     "elo": 1535.1,
+     "games": 128
+    },
+    {
+     "name": "SiuLoong",
+     "role": "Support",
+     "elo": 1549.4,
+     "games": 162
+    }
+   ]
+  },
+  "CFO": {
+   "elo": 1569.3,
+   "lineup": [
+    {
+     "name": "Rest",
+     "role": "Top",
+     "elo": 1529.7,
+     "games": 258
+    },
+    {
+     "name": "Shad0w",
+     "role": "Jungle",
+     "elo": 1734.5,
+     "games": 85
+    },
+    {
+     "name": "POUT",
+     "role": "Mid",
+     "elo": 1476.4,
+     "games": 77
+    },
+    {
+     "name": "Doggo",
+     "role": "Bot",
+     "elo": 1571.4,
+     "games": 347
+    },
+    {
+     "name": "Kino",
+     "role": "Support",
+     "elo": 1534.6,
+     "games": 149
+    }
+   ]
+  },
   "KC": {
    "elo": 1676.3,
    "lineup": [
@@ -664,6 +454,216 @@
      "role": "Support",
      "elo": 1626.6,
      "games": 368
+    }
+   ]
+  },
+  "G2": {
+   "elo": 1692.7,
+   "lineup": [
+    {
+     "name": "BrokenBlade",
+     "role": "Top",
+     "elo": 1713.2,
+     "games": 447
+    },
+    {
+     "name": "SkewMond",
+     "role": "Jungle",
+     "elo": 1714.1,
+     "games": 237
+    },
+    {
+     "name": "Caps",
+     "role": "Mid",
+     "elo": 1714.1,
+     "games": 452
+    },
+    {
+     "name": "Hans Sama",
+     "role": "Bot",
+     "elo": 1698.5,
+     "games": 438
+    },
+    {
+     "name": "Labrov",
+     "role": "Support",
+     "elo": 1623.6,
+     "games": 398
+    }
+   ]
+  },
+  "MKOI": {
+   "elo": 1590.6,
+   "lineup": [
+    {
+     "name": "Myrwn",
+     "role": "Top",
+     "elo": 1585.2,
+     "games": 292
+    },
+    {
+     "name": "Elyoya",
+     "role": "Jungle",
+     "elo": 1585.2,
+     "games": 387
+    },
+    {
+     "name": "Jojopyun",
+     "role": "Mid",
+     "elo": 1612.1,
+     "games": 254
+    },
+    {
+     "name": "Supa",
+     "role": "Bot",
+     "elo": 1585.2,
+     "games": 292
+    },
+    {
+     "name": "Alvaro",
+     "role": "Support",
+     "elo": 1585.2,
+     "games": 292
+    }
+   ]
+  },
+  "TES": {
+   "elo": 1689.8,
+   "lineup": [
+    {
+     "name": "369",
+     "role": "Top",
+     "elo": 1799.5,
+     "games": 478
+    },
+    {
+     "name": "Tian",
+     "role": "Jungle",
+     "elo": 1687.5,
+     "games": 467
+    },
+    {
+     "name": "Creme",
+     "role": "Mid",
+     "elo": 1661.5,
+     "games": 556
+    },
+    {
+     "name": "JackeyLove",
+     "role": "Bot",
+     "elo": 1726.8,
+     "games": 514
+    },
+    {
+     "name": "Zhuo",
+     "role": "Support",
+     "elo": 1573.7,
+     "games": 393
+    }
+   ]
+  },
+  "TSW": {
+   "elo": 1588.3,
+   "lineup": [
+    {
+     "name": "Pun",
+     "role": "Top",
+     "elo": 1528.7,
+     "games": 292
+    },
+    {
+     "name": "Hizto",
+     "role": "Jungle",
+     "elo": 1593.6,
+     "games": 177
+    },
+    {
+     "name": "Dire",
+     "role": "Mid",
+     "elo": 1593.6,
+     "games": 177
+    },
+    {
+     "name": "Eddie",
+     "role": "Bot",
+     "elo": 1600.5,
+     "games": 281
+    },
+    {
+     "name": "Bie",
+     "role": "Support",
+     "elo": 1625.1,
+     "games": 321
+    }
+   ]
+  },
+  "GEN": {
+   "elo": 1852.5,
+   "lineup": [
+    {
+     "name": "Kiin",
+     "role": "Top",
+     "elo": 1864.2,
+     "games": 542
+    },
+    {
+     "name": "Canyon",
+     "role": "Jungle",
+     "elo": 1902.3,
+     "games": 520
+    },
+    {
+     "name": "Chovy",
+     "role": "Mid",
+     "elo": 1945.6,
+     "games": 545
+    },
+    {
+     "name": "Ruler",
+     "role": "Bot",
+     "elo": 1797.6,
+     "games": 503
+    },
+    {
+     "name": "Duro",
+     "role": "Support",
+     "elo": 1752.9,
+     "games": 319
+    }
+   ]
+  },
+  "FUR": {
+   "elo": 1513.7,
+   "lineup": [
+    {
+     "name": "Guigo",
+     "role": "Top",
+     "elo": 1533.3,
+     "games": 270
+    },
+    {
+     "name": "Tatu",
+     "role": "Jungle",
+     "elo": 1503.6,
+     "games": 166
+    },
+    {
+     "name": "Tutsz",
+     "role": "Mid",
+     "elo": 1496.2,
+     "games": 243
+    },
+    {
+     "name": "Ayu",
+     "role": "Bot",
+     "elo": 1496.2,
+     "games": 264
+    },
+    {
+     "name": "JoJo",
+     "role": "Support",
+     "elo": 1539.3,
+     "games": 280
     }
    ]
   }
