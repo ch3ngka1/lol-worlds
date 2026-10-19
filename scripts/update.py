@@ -18,7 +18,7 @@ def fetch_live():
 def build_schedule(rows, name2code):
     out = []
     for m in rows:
-        ev, st = event_label(m["OverviewPage"])
+        ev, st, _ = event_label(m["OverviewPage"])
         r = series_result(m)
         c1 = name2code.get(m["Team1"]); c2 = name2code.get(m["Team2"])
         out.append({
@@ -71,6 +71,7 @@ def main(offline=None):
     h2h = [x for x in history if x["c1"] in codes and x["c2"] in codes and x["c1"] != x["c2"]]
     changed |= write_json("h2h.json", {"series": h2h})
     changed |= write_json("teams.json", {t["code"]: {"name": t["name"], "lp": t["lp"], "league": t["league"],
+                                         "seed": t.get("seed"), "qualified": t.get("qualified"),
                                          "lineage": t["lineage"]} for t in teams})
     if changed or not os.path.exists(os.path.join(DATA, "meta.json")):
         write_json("meta.json", {"updated": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")})

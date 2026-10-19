@@ -13,14 +13,20 @@ def load_teams():
     return t, name2code
 
 def event_label(overview):
-    """'2019 Season World Championship/Main Event' -> ('2019 世界賽', '主賽事')"""
-    m = re.match(r"(\d{4}) (Season World Championship|Mid-Season Invitational)(?:/(.*))?", overview)
-    if not m:
-        return overview, ""
-    year, kind, stage = m.groups()
-    ev = f"{year} {'世界賽' if 'World' in kind else 'MSI'}"
+    """回傳 (賽事名稱, 階段, 種類)。種類：worlds / msi / fs（First Stand）/ ewc（電競世界盃）"""
+    m = re.match(r"(\d{4}) (Season World Championship|Mid-Season Invitational|First Stand)(?:/(.*))?", overview)
+    if m:
+        year, kind, stage = m.groups()
+        k = {"Season World Championship": "worlds", "Mid-Season Invitational": "msi", "First Stand": "fs"}[kind]
+        ev = f"{year} " + {"worlds": "世界賽", "msi": "MSI", "fs": "First Stand"}[k]
+    else:
+        m = re.match(r"Esports World Cup (\d{4})(?:/(.*))?", overview)
+        if not m:
+            return overview, "", "other"
+        year, stage = m.groups()
+        k, ev = "ewc", f"{year} 電競世界盃"
     st = {"Play-In": "入圍賽", "Main Event": "主賽事"}.get(stage or "", stage or "")
-    return ev, st
+    return ev, st, k
 
 def series_result(m):
     """回傳 (s1, s2, winner) 或 None（還沒打）。"""

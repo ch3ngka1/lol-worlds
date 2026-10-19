@@ -1,6 +1,8 @@
-name: 重建歷史戰績（手動）
+name: 重建歷史戰績
 on:
   workflow_dispatch:
+  push:
+    paths: ['scripts/**']
 permissions:
   contents: write
 concurrency: { group: update-data, cancel-in-progress: false }

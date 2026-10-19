@@ -3,30 +3,45 @@
   "name": "Anyone's Legend",
   "lp": "Anyone's Legend",
   "league": "LPL",
-  "lineage": []
+  "seed": 1,
+  "qualified": "LPL 2026 總決賽冠軍",
+  "lineage": [
+   [
+    "AG.AL",
+    "電競世界盃合作隊名"
+   ]
+  ]
  },
  "BLG": {
   "name": "Bilibili Gaming",
   "lp": "Bilibili Gaming",
   "league": "LPL",
+  "seed": 2,
+  "qualified": "LPL 2026 冠軍積分",
   "lineage": []
  },
  "TES": {
   "name": "Top Esports",
   "lp": "Top Esports",
   "league": "LPL",
+  "seed": 3,
+  "qualified": "LPL 2026 世界賽資格賽冠軍",
   "lineage": []
  },
  "IG": {
   "name": "Invictus Gaming",
   "lp": "Invictus Gaming",
   "league": "LPL",
+  "seed": 4,
+  "qualified": "LPL 2026 世界賽資格賽亞軍",
   "lineage": []
  },
  "GEN": {
   "name": "Gen.G",
   "lp": "Gen.G",
   "league": "LCK",
+  "seed": 1,
+  "qualified": "LCK 2026 季後賽冠軍",
   "lineage": [
    [
     "KSV eSports",
@@ -42,6 +57,8 @@
   "name": "Hanwha Life Esports",
   "lp": "Hanwha Life Esports",
   "league": "LCK",
+  "seed": 2,
+  "qualified": "LCK 2026 季後賽亞軍",
   "lineage": [
    [
     "ROX Tigers",
@@ -69,6 +86,8 @@
   "name": "T1",
   "lp": "T1",
   "league": "LCK",
+  "seed": 3,
+  "qualified": "LCK 2026 季後賽第三名",
   "lineage": [
    [
     "SK Telecom T1",
@@ -80,6 +99,8 @@
   "name": "Dplus KIA",
   "lp": "Dplus Kia",
   "league": "LCK",
+  "seed": 4,
+  "qualified": "LCK 2026 季後賽第四名",
   "lineage": [
    [
     "DWG KIA",
@@ -99,6 +120,8 @@
   "name": "G2 Esports",
   "lp": "G2 Esports",
   "league": "LEC",
+  "seed": 1,
+  "qualified": "LEC 2026 夏季季後賽冠軍",
   "lineage": [
    [
     "Gamers2",
@@ -110,6 +133,8 @@
   "name": "Movistar KOI",
   "lp": "Movistar KOI",
   "league": "LEC",
+  "seed": 2,
+  "qualified": "LEC 2026 夏季季後賽亞軍",
   "lineage": [
    [
     "MAD Lions KOI",
@@ -133,6 +158,8 @@
   "name": "Karmine Corp",
   "lp": "Karmine Corp",
   "league": "LEC",
+  "seed": 3,
+  "qualified": "LEC 2026 夏季季後賽第三名（入圍賽晉級）",
   "lineage": [
    [
     "Kameto Corp",
@@ -144,42 +171,61 @@
   "name": "Team Liquid",
   "lp": "Team Liquid",
   "league": "LCS",
+  "seed": 1,
+  "qualified": "LCS 2026 夏季季後賽冠軍",
   "lineage": []
  },
  "LYON": {
   "name": "LYON",
   "lp": "LYON (2024 American Team)",
   "league": "LCS",
+  "seed": 2,
+  "qualified": "LCS 2026 夏季季後賽亞軍",
   "lineage": []
  },
  "C9": {
   "name": "Cloud9",
   "lp": "Cloud9",
   "league": "LCS",
+  "seed": 3,
+  "qualified": "LCS 2026 夏季季後賽第三名（入圍賽）",
   "lineage": []
  },
  "TSW": {
   "name": "Team Secret Whales",
   "lp": "Team Secret Whales",
   "league": "LCP",
-  "lineage": []
+  "seed": 1,
+  "qualified": "LCP 2026 第三賽段冠軍",
+  "lineage": [
+   [
+    "Team Whales",
+    "改名"
+   ]
+  ]
  },
  "CFO": {
   "name": "CTBC Flying Oyster",
   "lp": "CTBC Flying Oyster",
   "league": "LCP",
+  "seed": 2,
+  "qualified": "LCP 2026 第三賽段亞軍",
   "lineage": []
  },
  "MVK": {
   "name": "MVK Esports",
   "lp": "MVK Esports",
   "league": "LCP",
+  "seed": 3,
+  "qualified": "LCP 2026 冠軍積分（入圍賽）",
   "lineage": []
  },
  "LOS": {
   "name": "LØS",
   "lp": "LØS",
   "league": "CBLOL",
+  "seed": 1,
+  "qualified": "CBLOL 2026 第二賽段季後賽冠軍",
   "lineage": [
    [
     "Los Grandes",
@@ -192,6 +238,10 @@
    [
     "Flamengo Esports",
     "改名"
+   ],
+   [
+    "MIBR.LOS",
+    "電競世界盃合作隊名"
    ]
   ]
  },
@@ -199,6 +249,8 @@
   "name": "FURIA",
   "lp": "FURIA",
   "league": "CBLOL",
+  "seed": 2,
+  "qualified": "CBLOL 2026 第二賽段季後賽亞軍（入圍賽）",
   "lineage": []
  }
 }

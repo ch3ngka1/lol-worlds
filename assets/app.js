@@ -20,6 +20,7 @@
   const team = (c) => (c && D.teams[c]) || null;
   const lgClass = (c) => (team(c) ? "lg-" + team(c).league : "");
   const pct = (p) => Math.round(p * 100);
+  const seedTxt = (c) => { const t = team(c); return t && t.seed ? `${t.league} ${t.seed} 號種子` : ""; };
 
   function roundLabel(m) {
     if (ROUND[m.round]) return ROUND[m.round];
@@ -111,7 +112,7 @@
     const t = team(code);
     if (!t) return `<div class="side ${align} tbd"><span class="names"><span class="code">待定</span></span></div>`;
     const dot = `<span class="dot ${lgClass(code)}" aria-hidden="true"></span>`;
-    const names = `<span class="names"><span class="code">${esc(code)}</span><span class="full">${esc(t.name)}</span></span>`;
+    const names = `<span class="names"><span class="code">${esc(code)}</span><span class="full">${esc(t.name)}・${esc(seedTxt(code))}</span></span>`;
     return `<div class="side ${align} ${state || ""}">${align === "right" ? names + dot : dot + names}</div>`;
   }
 
@@ -220,7 +221,7 @@
         <p class="sr-only">勝率參考：${esc(a)} ${pct(P.p)}%，${esc(b)} ${100 - pct(P.p)}%</p>
         <ul class="factors">
           <li><b>國際賽實力分數</b><span class="val">${Math.round(P.ra)} : ${Math.round(P.rb)}</span>
-            <span class="why">依兩隊（含前身隊名）在世界賽、MSI 每場系列賽勝負計算，本屆結果也會即時算進去。只看這項是 ${esc(a)} ${pct(P.base)}%。${ra.intlSeries < 10 || rb.intlSeries < 10 ? "其中一隊國際賽經驗少，分數主要參考同賽區隊伍的平均，誤差較大。" : ""}</span></li>
+            <span class="why">依兩隊（含前身隊名）在世界賽、MSI、First Stand、電競世界盃每場系列賽勝負計算，本屆結果也會即時算進去。只看這項是 ${esc(a)} ${pct(P.base)}%。${ra.intlSeries < 10 || rb.intlSeries < 10 ? "其中一隊國際賽經驗少，分數主要參考同賽區隊伍的平均，誤差較大。" : ""}</span></li>
           <li><b>過去交手修正</b><span class="val">${esc(adjTxt)}</span>
             <span class="why">${h.rows.length ? `${h.rows.length} 次交手，越久以前的比賽影響越小（每 2 年減半）。` : "兩隊從未在國際賽交手，不做修正。"}</span></li>
           <li><b>本屆戰績</b><span class="val">${fa.res.length || fb.res.length ? `${fa.w}-${fa.l} : ${fb.w}-${fb.l}` : "尚未出賽"}</span>
@@ -253,14 +254,15 @@
               <span class="old">${esc(s.date)}・Bo${esc(s.bo || "?")}</span>${oldTxt}</span>
             <span class="sc" aria-label="${esc(a)} ${as} 比 ${bs}">${as ?? "-"}:${bs ?? "-"}</span></li>`;
         }).join("")}</ul>
-        <p class="note">2014 年起的世界賽與 MSI。顏色較淡的是 4 年以上的舊紀錄，陣容多半已大不相同。</p>
-      </div>` : `<div class="state">兩隊（含前身隊名）從 2014 年起，從未在世界賽或 MSI 交手過。</div>`;
+        <p class="note">2014 年起的世界賽、MSI，以及 First Stand（2025 起）、電競世界盃（2024 起）。顏色較淡的是 4 年以上的舊紀錄，陣容多半已大不相同。</p>
+      </div>` : `<div class="state">兩隊（含前身隊名）從 2014 年起，從未在世界賽、MSI、First Stand 或電競世界盃交手過。</div>`;
 
     const hero = (code, side) => {
       const t = team(code);
       const st = done ? ((m.w === 1) === (side === 1) ? "won" : "lost") : "";
       return `<div class="hero-team ${st}"><div class="code">${esc(code)}</div><div class="full">${esc(t.name)}</div>
-        <div class="league"><span class="dot ${lgClass(code)}" aria-hidden="true"></span>${esc(LEAGUE_ZH[t.league] || t.league)}</div></div>`;
+        <div class="league"><span class="dot ${lgClass(code)}" aria-hidden="true"></span>${esc(LEAGUE_ZH[t.league] || t.league)}・${esc(t.seed)} 號種子</div>
+        <div class="qual">${esc(t.qualified || "")}</div></div>`;
     };
 
     view.innerHTML = `
@@ -275,7 +277,7 @@
         <h1 class="sr-only">${esc(a)} 對 ${esc(b)}</h1>
       </section>
       <section class="section"><h2>勝率參考</h2>${probBlock}</section>
-      <section class="section"><h2>國際賽交手紀錄 <small>世界賽・MSI</small></h2>${h2hBlock}</section>
+      <section class="section"><h2>國際賽交手紀錄 <small>世界賽・MSI・First Stand・電競世界盃</small></h2>${h2hBlock}</section>
       <section class="section"><h2>本屆戰績</h2>
         <div class="panel"><div class="rosters">
           <div><b>${esc(a)}</b>　${formHTML(a)}</div><div><b>${esc(b)}</b>　${formHTML(b)}</div>
@@ -295,11 +297,14 @@
       <p>所有賽程、比分、選手名單與歷史戰績都來自玩家共同維護的英雄聯盟電競百科 <a href="https://lol.fandom.com/" rel="noopener">Leaguepedia</a>，依 <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW" rel="license noopener">CC BY-SA 3.0</a> 授權使用。</p>
       <p>網站每小時自動向 Leaguepedia 檢查一次。比賽結果要等 Leaguepedia 的志工填上，通常比實際比賽晚幾十分鐘到一兩個小時才會出現在這裡。</p>
       <h2>交手紀錄怎麼算</h2>
-      <p>範圍是 2014 年起的世界賽與 MSI（含入圍賽），加上本屆已打完的比賽。單位是「系列賽」，例如 Bo5 打 3:1 算一次勝利。</p>
+      <p>範圍是 2014 年起的世界賽與 MSI（含入圍賽）、2025 年起的 First Stand、2024 年起的電競世界盃（Esports World Cup，俗稱石油杯），加上本屆已打完的比賽。單位是「系列賽」，例如 Bo5 打 3:1 算一次勝利。</p>
       <p>隊伍改名、品牌更換、被收購時，舊隊名的戰績會算進現在的隊伍，依據是 Leaguepedia 記錄的隊伍沿革。單純買下聯賽席位、隊伍本身沒有延續的情況不算。列表裡會標出當時的隊名，方便你自己判斷。</p>
       <ul>${lineage}</ul>
+      <h2>種子序</h2>
+      <p>每隊名稱旁標示的是 2026 世界賽的賽區種子序（例如「LCK 1 號種子」），以及取得資格的方式，來源同樣是 Leaguepedia。</p>
+      <ul>${Object.entries(D.teams).map(([c, t]) => `<li><b>${esc(c)}</b>：${esc(t.league)} ${esc(t.seed)} 號種子，${esc(t.qualified || "")}</li>`).join("")}</ul>
       <h2>勝率參考怎麼算</h2>
-      <p>主要依據是「國際賽實力分數」（Elo 制）：每支隊伍從 1500 分起算，在世界賽、MSI 贏了加分、輸了扣分，贏強隊加得多、輸弱隊扣得多；Bo5 的影響比 Bo1 大。每到新的一年，分數會往所屬賽區平均拉回三分之一，反映陣容變動。從沒打過國際賽的隊伍，以同賽區隊伍的平均起算。</p>
+      <p>主要依據是「國際賽實力分數」（Elo 制）：每支隊伍從 1500 分起算，在世界賽、MSI、First Stand、電競世界盃贏了加分、輸了扣分，贏強隊加得多、輸弱隊扣得多；Bo5 的影響比 Bo1 大。電競世界盃不是 Riot 官方賽事、也不影響世界賽資格，各隊重視程度可能不同，所以只算 0.75 倍的影響。每到新的一年，分數會往所屬賽區平均拉回三分之一，反映陣容變動。從沒打過國際賽的隊伍，以同賽區隊伍的平均起算。</p>
       <p>再用兩隊過去的交手紀錄做小幅修正（最多約 ±12%），越久以前的交手影響越小。最後結果限制在 5%～95% 之間。</p>
       <p>這只是根據過去勝負算出的參考值，沒有考慮版本、選手狀態、陣容異動，請不要當成真正的預測。</p>
       <h2>聲明</h2>

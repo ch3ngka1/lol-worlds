@@ -139,6 +139,7 @@ a.match:hover { background: var(--surface-2); }
 .hero-team .code { font: 700 40px/1 var(--num); letter-spacing: .02em; }
 .hero-team .full { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
 .hero-team .league { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink-3); margin-top: 6px; }
+.hero-team .qual { font-size: 12px; color: var(--ink-3); margin-top: 2px; text-wrap: balance; }
 .hero-team.lost .code { color: var(--ink-3); }
 .hero-score { font: 700 40px/1 var(--num); font-variant-numeric: tabular-nums; }
 .hero-score .vs { font-size: 20px; color: var(--ink-3); font-weight: 500; }
