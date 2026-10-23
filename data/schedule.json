@@ -104,9 +104,9 @@
    "bo": 1,
    "c1": "BLG",
    "c2": "MKOI",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-1_4",
@@ -116,9 +116,9 @@
    "bo": 1,
    "c1": "AL",
    "c2": "KC",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-1_5",
@@ -128,9 +128,9 @@
    "bo": 1,
    "c1": "G2",
    "c2": "DK",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-1_6",
