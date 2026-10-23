@@ -80,9 +80,9 @@
    "bo": 1,
    "c1": "GEN",
    "c2": "IG",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 1,
+   "s2": 0,
+   "w": 1
   },
   {
    "id": "Main-Event_Round-1_2",
@@ -92,9 +92,9 @@
    "bo": 1,
    "c1": "HLE",
    "c2": "TES",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 1,
+   "s2": 0,
+   "w": 1
   },
   {
    "id": "Main-Event_Round-1_3",
