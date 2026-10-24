@@ -4,7 +4,7 @@
 
   const TZ = "Asia/Taipei";
   const FILES = ["meta", "teams", "schedule", "rosters", "ratings", "h2h"];
-  const OPTIONAL = ["odds", "predictions", "team_history"];   // 缺了也能正常顯示
+  const OPTIONAL = ["odds", "predictions", "team_history", "league_h2h"];   // 缺了也能正常顯示
   const ROLE = { Top: "上路", Jungle: "打野", Mid: "中路", Bot: "下路", Support: "輔助" };
   const ROUND = { Quarterfinals: "八強", Semifinals: "四強", Finals: "決賽" };
   const LEAGUE_ZH = { LCK: "LCK 韓國", LPL: "LPL 中國", LEC: "LEC 歐洲", LCS: "LCS 北美", LCP: "LCP 亞太", CBLOL: "CBLOL 巴西" };
@@ -306,6 +306,7 @@
         <h1 class="sr-only">${esc(a)} 對 ${esc(b)}</h1>
       </section>
       <section class="section"><h2>勝率參考</h2>${probBlock}</section>
+      ${leagueH2H(a, b)}
       <section class="section"><h2>國際賽交手紀錄 <small>世界賽・MSI・First Stand・電競世界盃</small></h2>${h2hBlock}</section>
       <section class="section"><h2>本屆戰績</h2>
         <div class="panel"><div class="rosters">
@@ -313,6 +314,36 @@
         </div></div></section>
       <section class="section"><h2>選手名單 <small>本屆登錄名單・右側為選手實力分數</small></h2>
         <div class="rosters">${rosterHTML(a)}${rosterHTML(b)}</div></section>`;
+  }
+
+  /* 同賽區內戰：今年聯賽交手 */
+  function leagueH2H(a, b) {
+    const A = team(a), B = team(b);
+    if (!A || !B || A.league !== B.league) return "";
+    const key = [a, b].sort().join("|");
+    const rows = (D.league_h2h && D.league_h2h[key]) || [];
+    const lg = esc(A.league);
+    if (!rows.length) return `<section class="section"><h2>今年 ${lg} 聯賽交手</h2><div class="state">兩隊今年在 ${lg} 沒有交手紀錄。</div></section>`;
+    let aw = 0, bw = 0, ag = 0, bg = 0;
+    const items = rows.map((r) => {
+      const as = r.c1 === a ? r.s1 : r.s2, bs = r.c1 === a ? r.s2 : r.s1;
+      if (as > bs) aw++; else bw++;
+      ag += as; bg += bs;
+      const md = r.date.slice(5).split("-").map(Number).join("/");
+      return `<li><span class="ev">${esc(md)}<br>${esc(r.stage)}</span>
+        <span class="teams"><span class="${as > bs ? "w" : ""}">${esc(a)}</span> vs <span class="${bs > as ? "w" : ""}">${esc(b)}</span></span>
+        <span class="sc" aria-label="${esc(a)} ${as} 比 ${bs}">${as}:${bs}</span></li>`;
+    }).join("");
+    return `<section class="section"><h2>今年 ${lg} 聯賽交手 <small>同賽區內戰・2026 年</small></h2>
+      <div class="panel">
+        <div class="h2h-sum">
+          <div><div class="big">${aw}</div><div class="lbl">${esc(a)} 系列賽勝</div></div>
+          <div class="lbl">小局 ${ag} : ${bg}</div>
+          <div><div class="big">${bw}</div><div class="lbl">${esc(b)} 系列賽勝</div></div>
+        </div>
+        <ul class="h2h-list">${items}</ul>
+        <p class="note">包含今年 ${lg} 的盃賽、例行賽、季後賽與世界賽資格賽。這些比賽已經以 0.5 倍算進上面的實力分數，這裡另外列出方便參考。</p>
+      </div></section>`;
   }
 
   /* ---------- 頁面：資料與方法 ---------- */

@@ -69,13 +69,54 @@ def build_rosters(rows, name2code):
         t["staff"].sort(key=lambda e: e["name"].lower())
     return by
 
+STAGE_ZH = [("Rounds 1-2", "例行賽第 1-2 輪"), ("Rounds 3-4", "例行賽第 3-4 輪"), ("Road to MSI", "MSI 資格賽"),
+            ("Season Play-In", "季後賽入圍賽"), ("Season Playoffs", "季後賽"), ("Grand Finals", "總決賽"),
+            ("Regional Finals", "世界賽資格賽"), ("Spring Playoffs", "春季季後賽"), ("Summer Playoffs", "夏季季後賽"),
+            ("Versus Playoffs", "Versus 季後賽"), ("Spring Season", "春季賽"), ("Summer Season", "夏季賽"),
+            ("Versus Season", "Versus 賽季"), ("Lock-In", "Lock-In 盃賽"), ("Cup", "盃賽"), ("Promotion", "升降級賽")]
+
+def stage_zh(ov):
+    st = ov.split("/", 2)[-1] if ov.count("/") >= 2 else ov
+    for en, zh in STAGE_ZH:
+        if st == en:
+            return zh
+    import re
+    m = re.match(r"Split (\d+)( Playoffs)?$", st)
+    if m:
+        return f"第 {m.group(1)} 賽段" + ("季後賽" if m.group(2) else "")
+    return st
+
+def build_league_h2h(games, league, year="2026"):
+    """今年同賽區隊伍在自家聯賽的系列賽交手（依每局資料彙整）。"""
+    from ratings import kind_of
+    series = {}
+    for g in games:
+        if not g["dt"].startswith(year) or kind_of(g["ov"]) != "dom":
+            continue
+        a, b = g["c1"], g["c2"]
+        if not a or not b or league.get(a) != league.get(b):
+            continue
+        k = g["match"] or g["id"]
+        s = series.setdefault(k, {"date": g["dt"][:10], "league": g["ov"].split("/")[0], "stage": stage_zh(g["ov"]),
+                                  "c1": min(a, b), "c2": max(a, b), "s1": 0, "s2": 0})
+        s["date"] = min(s["date"], g["dt"][:10])
+        winner = a if g["win"] == 1 else b
+        if winner == s["c1"]: s["s1"] += 1
+        else: s["s2"] += 1
+    out = {}
+    for s in sorted(series.values(), key=lambda x: x["date"], reverse=True):
+        out.setdefault(s["c1"] + "|" + s["c2"], []).append(s)
+    return out
+
 def main(offline=None):
     teams, name2code = load_teams()
     sched_rows, player_rows, live_games = offline or fetch_live()
     schedule = build_schedule(sched_rows, name2code)
     rosters = build_rosters(player_rows, name2code)
     history = json.load(open(os.path.join(DATA, "history.json"), encoding="utf-8"))["series"]
-    ratings = compute_ratings(teams, history, load_games(live_games), rosters)
+    all_games = load_games(live_games)
+    ratings = compute_ratings(teams, history, all_games, rosters)
+    write_json("league_h2h.json", build_league_h2h(all_games, {t["code"]: t["league"] for t in teams}))
     changed = False
     changed |= write_json("schedule.json", {"matches": schedule})
     changed |= write_json("rosters.json", rosters)
