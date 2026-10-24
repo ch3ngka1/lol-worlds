@@ -35,11 +35,6 @@
     "role": "Coach"
    },
    {
-    "name": "Despa1r",
-    "page": "Despa1r",
-    "role": "Coach"
-   },
-   {
     "name": "Teacherma",
     "page": "Teacherma",
     "role": "Coach"
@@ -873,6 +868,11 @@
    {
     "name": "Poppy",
     "page": "Poppy (Chang Po-Hao)",
+    "role": "Coach"
+   },
+   {
+    "name": "Xiaobai",
+    "page": "Xiaobai",
     "role": "Coach"
    }
   ]
