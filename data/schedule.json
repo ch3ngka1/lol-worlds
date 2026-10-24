@@ -164,9 +164,9 @@
    "bo": 1,
    "c1": "TSW",
    "c2": "LYON",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-2_1",
@@ -174,8 +174,8 @@
    "round": "Round 2",
    "time": "2026-10-24T17:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "TES",
+   "c2": "AL",
    "s1": null,
    "s2": null,
    "w": null
@@ -186,8 +186,8 @@
    "round": "Round 2",
    "time": "2026-10-24T18:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "CFO",
+   "c2": "MKOI",
    "s1": null,
    "s2": null,
    "w": null
@@ -198,8 +198,8 @@
    "round": "Round 2",
    "time": "2026-10-24T19:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "G2",
+   "c2": "LOS",
    "s1": null,
    "s2": null,
    "w": null
@@ -210,8 +210,8 @@
    "round": "Round 2",
    "time": "2026-10-24T20:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "LYON",
+   "c2": "KC",
    "s1": null,
    "s2": null,
    "w": null
@@ -222,8 +222,8 @@
    "round": "Round 2",
    "time": "2026-10-24T21:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "IG",
+   "c2": "TSW",
    "s1": null,
    "s2": null,
    "w": null
@@ -234,8 +234,8 @@
    "round": "Round 2",
    "time": "2026-10-24T22:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "HLE",
+   "c2": "GEN",
    "s1": null,
    "s2": null,
    "w": null
@@ -246,8 +246,8 @@
    "round": "Round 2",
    "time": "2026-10-24T23:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "DK",
+   "c2": "T1",
    "s1": null,
    "s2": null,
    "w": null
@@ -258,8 +258,8 @@
    "round": "Round 2",
    "time": "2026-10-25T00:00:00Z",
    "bo": 1,
-   "c1": null,
-   "c2": null,
+   "c1": "TLAW",
+   "c2": "BLG",
    "s1": null,
    "s2": null,
    "w": null
