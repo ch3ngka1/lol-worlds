@@ -5,7 +5,7 @@ on:
     paths: ['scripts/build_history.py', 'scripts/teams.json', 'scripts/ratings.py', 'scripts/update.py', 'scripts/common.py']
 permissions:
   contents: write
-concurrency: { group: update-data, cancel-in-progress: false }
+concurrency: { group: rebuild-data, cancel-in-progress: false }
 jobs:
   build:
     runs-on: ubuntu-latest

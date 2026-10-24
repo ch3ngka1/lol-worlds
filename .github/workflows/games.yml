@@ -5,7 +5,7 @@ on:
     paths: ['scripts/build_games.py']
 permissions:
   contents: write
-concurrency: { group: update-data, cancel-in-progress: false }
+concurrency: { group: rebuild-data, cancel-in-progress: false }
 jobs:
   build:
     runs-on: ubuntu-latest
