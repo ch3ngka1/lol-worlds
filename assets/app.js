@@ -68,6 +68,7 @@
   function predResult(m) {
     const pr = D.preds[m.id];
     if (!pr || !isDone(m)) return null;
+    if (new Set([pr.a, pr.b, m.c1, m.c2]).size !== 2) return null;   // 場次編號被調換時不要對錯場
     const pa = pr.a === m.c1 ? pr.p : 1 - pr.p;          // 換算成 c1 的勝率
     const fav = pa >= 0.5 ? m.c1 : m.c2, conf = Math.max(pa, 1 - pa);
     const winner = m.w === 1 ? m.c1 : m.c2;

@@ -1,8 +1,10 @@
 name: 更新賽程與比分
 on:
   schedule:
-    - cron: "7 * * * *"      # 每小時第 7 分鐘（UTC）
+    - cron: "*/15 * * * *"   # 每 15 分鐘嘗試一次（GitHub 忙時會延後或跳過排程，所以排密一點）
   workflow_dispatch:
+  push:
+    paths: ['.github/workflows/update.yml']
 permissions:
   contents: write
 concurrency: { group: update-data, cancel-in-progress: false }
