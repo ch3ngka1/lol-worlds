@@ -224,9 +224,9 @@
    "bo": 1,
    "c1": "IG",
    "c2": "TSW",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 1,
+   "s2": 0,
+   "w": 1
   },
   {
    "id": "Main-Event_Round-2_6",
