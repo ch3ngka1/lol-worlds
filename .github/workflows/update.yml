@@ -1,7 +1,9 @@
 name: 更新賽程與比分
+# GitHub 的排程常常延後或跳過，所以每次啟動後「連續工作」將近 6 小時、每 10 分鐘更新一次。
+# 排程每小時嘗試啟動；同時間只會有一個在跑，其餘排隊接手，所以只要有一次成功啟動就能涵蓋好幾個小時。
 on:
   schedule:
-    - cron: "*/15 * * * *"   # 每 15 分鐘嘗試一次（GitHub 忙時會延後或跳過排程，所以排密一點）
+    - cron: "*/30 * * * *"
   workflow_dispatch:
   push:
     paths: ['.github/workflows/update.yml']
@@ -11,16 +13,26 @@ concurrency: { group: update-data, cancel-in-progress: false }
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 355
     steps:
       - uses: actions/checkout@v4
-      - name: 抓 Leaguepedia 最新資料
-        run: python3 scripts/update.py
-      - name: 有變動才存檔
+      - name: 連續更新（每 10 分鐘一次，最多約 5 小時 40 分）
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
-          git diff --cached --quiet && { echo "資料沒有變動"; exit 0; }
-          git commit -m "自動更新賽程資料"
-          git pull --rebase && git push
+          end=$(( $(date +%s) + 340*60 ))
+          while [ "$(date +%s)" -lt "$end" ]; do
+            git pull -q --rebase origin main || true
+            if python3 scripts/update.py; then
+              git add data
+              if ! git diff --cached --quiet; then
+                git commit -q -m "自動更新賽程資料"
+                git pull -q --rebase origin main && git push -q || echo "推送失敗，下一輪再試"
+              else
+                echo "$(date -u +%H:%M) 資料沒有變動"
+              fi
+            else
+              echo "這次抓取失敗，下一輪再試"
+            fi
+            sleep 600
+          done
