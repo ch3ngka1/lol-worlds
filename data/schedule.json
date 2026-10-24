@@ -188,9 +188,9 @@
    "bo": 1,
    "c1": "CFO",
    "c2": "MKOI",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-2_3",
