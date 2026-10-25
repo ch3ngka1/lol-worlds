@@ -260,9 +260,9 @@
    "bo": 1,
    "c1": "TLAW",
    "c2": "BLG",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-3_1",
