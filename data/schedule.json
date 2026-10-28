@@ -381,8 +381,8 @@
    "c1": "IG",
    "c2": "LYON",
    "s1": 1,
-   "s2": 0,
-   "w": 1
+   "s2": 1,
+   "w": null
   },
   {
    "id": "Main-Event_Round-4_3",
