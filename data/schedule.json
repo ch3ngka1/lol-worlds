@@ -368,9 +368,9 @@
    "bo": 3,
    "c1": "MKOI",
    "c2": "T1",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 0,
+   "s2": 1,
+   "w": 2
   },
   {
    "id": "Main-Event_Round-4_2",
