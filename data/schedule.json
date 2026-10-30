@@ -428,9 +428,9 @@
    "bo": 3,
    "c1": "HLE",
    "c2": "G2",
-   "s1": null,
-   "s2": null,
-   "w": null
+   "s1": 1,
+   "s2": 0,
+   "w": 1
   },
   {
    "id": "Main-Event_Round-5_1",
