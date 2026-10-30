@@ -404,9 +404,9 @@
    "bo": 3,
    "c1": "TES",
    "c2": "BLG",
-   "s1": 0,
+   "s1": 1,
    "s2": 1,
-   "w": 2
+   "w": null
   },
   {
    "id": "Main-Event_Round-4_5",
