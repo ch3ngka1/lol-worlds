@@ -255,3 +255,16 @@ a.team-link:hover b, a.code.team-link:hover { text-decoration: underline; }
   .data-table td.champ { min-width: 0; }
   .cbar { right: 6px; max-width: calc(100% - 12px); }
 }
+
+/* 比數機率 */
+.score-dist { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); }
+.score-dist h3 { font-size: 15px; margin: 0 0 8px; }
+.score-dist ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.score-dist li { display: grid; grid-template-columns: 76px 1fr 84px; gap: 10px; align-items: center; font-size: 14px; }
+.score-dist .lab { font-family: var(--num); font-size: 16px; font-weight: 600; }
+.score-dist .track { height: 10px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.score-dist .track span { display: block; height: 100%; background: var(--ink-3); border-radius: 4px; }
+.score-dist li.top .track span { background: var(--accent); }
+.score-dist li.top .lab, .score-dist li.actual .lab { color: var(--ink); }
+.score-dist li.actual { font-weight: 700; }
+.score-dist .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }

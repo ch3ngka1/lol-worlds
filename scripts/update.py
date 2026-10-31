@@ -108,6 +108,21 @@ def build_league_h2h(games, league, year="2026"):
         out.setdefault(s["c1"] + "|" + s["c2"], []).append(s)
     return out
 
+SPREAD = 1.25   # 回測：實際比賽比「每局獨立」更容易一面倒，所以排比數時把單局勝率拉開一點
+
+def score_dist(g, bo, p_series):
+    """各比數的機率（以 a 隊角度，鍵如 "2-0"、"1-2"）。
+    比數的形狀用拉開後的單局勝率計算，再把 a 勝、b 勝兩邊分別縮放回原本的系列賽勝率，讓兩個數字一致。"""
+    import math
+    gs = 1 / (1 + math.exp(-SPREAD * math.log(g / (1 - g))))
+    need = bo // 2 + 1
+    a_side = {f"{need}-{j}": math.comb(need - 1 + j, j) * gs ** need * (1 - gs) ** j for j in range(need)}
+    b_side = {f"{j}-{need}": math.comb(need - 1 + j, j) * (1 - gs) ** need * gs ** j for j in range(need)}
+    ta, tb = sum(a_side.values()), sum(b_side.values())
+    out = {k: v / ta * p_series for k, v in a_side.items()}
+    out.update({k: v / tb * (1 - p_series) for k, v in b_side.items()})
+    return out
+
 def main(offline=None):
     teams, name2code = load_teams()
     sched_rows, player_rows, live_games = offline or fetch_live()
@@ -135,8 +150,10 @@ def main(offline=None):
     for m in schedule:
         if m["c1"] and m["c2"] and m["time"] > now and not m["w"]:
             g = expected(elo[m["c1"]], elo[m["c2"]])
-            new = {"a": m["c1"], "b": m["c2"], "bo": m["bo"], "game": round(g, 4),
-                   "p": round(min(.97, max(.03, series_prob(g, int(m["bo"] or 1)))), 4)}
+            ps = min(.97, max(.03, series_prob(g, int(m["bo"] or 1))))
+            new = {"a": m["c1"], "b": m["c2"], "bo": m["bo"], "game": round(g, 4), "p": round(ps, 4)}
+            if int(m["bo"] or 1) > 1:
+                new["scores"] = {k: round(v, 4) for k, v in score_dist(g, int(m["bo"]), ps).items()}
             old = preds.get(m["id"], {})
             if {k: old.get(k) for k in new} != new:
                 preds[m["id"]] = dict(new, at=now)

@@ -72,7 +72,13 @@
     const pa = pr.a === m.c1 ? pr.p : 1 - pr.p;          // 換算成 c1 的勝率
     const fav = pa >= 0.5 ? m.c1 : m.c2, conf = Math.max(pa, 1 - pa);
     const winner = m.w === 1 ? m.c1 : m.c2;
-    return { fav, conf, winner, hit: fav === winner, at: pr.at };
+    const r = { fav, conf, winner, hit: fav === winner, at: pr.at };
+    if (pr.scores && m.s1 != null && m.s2 != null) {
+      const as = pr.a === m.c1 ? m.s1 : m.s2, bs = pr.a === m.c1 ? m.s2 : m.s1;
+      r.scores = pr.scores; r.sa = pr.a; r.sb = pr.b; r.actual = `${as}-${bs}`;
+      r.top = topScore(pr.scores); r.scoreHit = r.top === r.actual;
+    }
+    return r;
   }
 
   /* ---------- 本屆戰績 ---------- */
@@ -115,6 +121,37 @@
     }
     return tot;
   }
+  const SPREAD = 1.25;
+  function scoreDist(game, bo, pSeries) {      // 與 scripts/update.py 的 score_dist 相同
+    const gs = 1 / (1 + Math.exp(-SPREAD * Math.log(game / (1 - game))));
+    const need = Math.floor(bo / 2) + 1, comb = (n, k) => { let c = 1; for (let i = 1; i <= k; i++) c = c * (n - k + i) / i; return c; };
+    const A = {}, B = {};
+    for (let j = 0; j < need; j++) {
+      A[`${need}-${j}`] = comb(need - 1 + j, j) * Math.pow(gs, need) * Math.pow(1 - gs, j);
+      B[`${j}-${need}`] = comb(need - 1 + j, j) * Math.pow(1 - gs, need) * Math.pow(gs, j);
+    }
+    const ta = Object.values(A).reduce((x, y) => x + y, 0), tb = Object.values(B).reduce((x, y) => x + y, 0);
+    const out = {};
+    Object.entries(A).forEach(([k, v]) => { out[k] = v / ta * pSeries; });
+    Object.entries(B).forEach(([k, v]) => { out[k] = v / tb * (1 - pSeries); });
+    return out;
+  }
+  const topScore = (d) => Object.entries(d).sort((x, y) => y[1] - x[1])[0][0];
+  function scoreBlock(a, b, d, actual) {
+    const keys = Object.keys(d).sort((x, y) => {
+      const [xa, xb] = x.split("-").map(Number), [ya, yb] = y.split("-").map(Number);
+      return (ya - yb) - (xa - xb);   // a 大勝 → a 險勝 → b 險勝 → b 大勝
+    });
+    const max = Math.max(...Object.values(d)), top = topScore(d);
+    return `<div class="score-dist"><h3>比數機率</h3><ul>${keys.map((k) => {
+      const [x, y] = k.split("-").map(Number), win = x > y ? a : b, sc = x > y ? `${x}:${y}` : `${y}:${x}`;
+      const isAct = actual === k;
+      return `<li class="${k === top ? "top" : ""}${isAct ? " actual" : ""}"><span class="lab">${esc(win)} ${sc}</span>
+        <span class="track" aria-hidden="true"><span style="width:${(d[k] / max * 100).toFixed(1)}%"></span></span>
+        <span class="num">${pct(d[k])}%${k === top ? " ★" : ""}${isAct ? " ← 實際" : ""}</span></li>`;
+    }).join("")}</ul>
+    <p class="note">★ 是最可能的比數。回測時，最可能的比數在 Bo3 約 38% 會猜中、Bo5 只有約 29%（甚至略低於「直接猜強隊 3:0」的 34%）。比較適合用來看「一面倒」還是「容易打滿」，不要當成比分預言。</p></div>`;
+  }
   function predict(a, b, bo) {
     const ra = D.ratings.teams[a].elo, rb = D.ratings.teams[b].elo;
     const game = 1 / (1 + Math.pow(10, (rb - ra) / 400));
@@ -140,7 +177,8 @@
     let extra = "";
     const pr = predResult(m);
     if (pr) {
-      extra = `<div class="mini-bar pred ${pr.hit ? "hit" : "miss"}">賽前看好 ${esc(pr.fav)} ${pct(pr.conf)}%　<b>${pr.hit ? "✓ 猜中" : "✗ 猜錯"}</b></div>`;
+      const sc = pr.scores ? `　比數 ${pr.scoreHit ? "✓" : "✗"}` : "";
+      extra = `<div class="mini-bar pred ${pr.hit ? "hit" : "miss"}">賽前看好 ${esc(pr.fav)} ${pct(pr.conf)}%　<b>${pr.hit ? "✓ 猜中" : "✗ 猜錯"}</b>${sc}</div>`;
     }
     if (!done && known(m)) {
       const p = predict(m.c1, m.c2, m.bo).p;
@@ -233,7 +271,8 @@
       const pr = predResult(m);
       probBlock = `<div class="panel"><p style="margin:0">這場已經打完，由 <b>${esc(winner)}</b> 以 ${Math.max(m.s1, m.s2)}:${Math.min(m.s1, m.s2)} 獲勝。</p>
         ${pr ? `<p style="margin:8px 0 0">賽前看好 <b>${esc(pr.fav)}</b>（${pct(pr.conf)}%）：<b>${pr.hit ? "✓ 猜中" : "✗ 猜錯"}</b>。<a href="#/record">看本屆所有預測</a></p>`
-             : `<p class="note">這場在本站開始記錄賽前勝率之前就打完了，沒有賽前紀錄。</p>`}</div>`;
+             : `<p class="note">這場在本站開始記錄賽前勝率之前就打完了，沒有賽前紀錄。</p>`}
+        ${pr && pr.scores ? scoreBlock(pr.sa, pr.sb, pr.scores, pr.actual) : ""}</div>`;
     } else {
       const P = predict(a, b, m.bo);
       const lu = (c) => (D.ratings.teams[c].lineup || []).map((x) => esc(x.name)).join("、");
@@ -256,6 +295,7 @@
           <li><b>本屆戰績</b><span class="val">${fa.res.length || fb.res.length ? `${fa.w}-${fa.l} : ${fb.w}-${fb.l}` : "尚未出賽"}</span>
             <span class="why">已包含在實力分數裡，列出來方便參考。</span></li>
         </ul>
+        ${m.bo > 1 ? scoreBlock(a, b, scoreDist(P.game, m.bo, P.p)) : ""}
         <p class="note">只是根據過去比賽結果算出的參考值，不代表預測一定準確；版本、狀態、選手異動都沒有算進去。<a href="#/about">怎麼算的？</a></p>
       </div>`;
     }
@@ -371,6 +411,8 @@
       <h2>怎麼挑出這個算法、準不準？</h2>
       <p>我們試了 3,200 多種組合：以選手或隊伍為單位、聯賽比重、分數變動幅度、每局經濟差、藍紅方、每年回歸、過去交手修正。用 2023 年 10 月到 2026 年 10 月的 275 場國際賽系列賽回測，每場只用開打前已知的資料；先用前半段挑設定、拿後半段驗證，再反過來驗一次。經濟差、藍紅方、每年回歸、交手修正加進去都沒有幫助，所以沒有採用。</p>
       <p>結果：被看好的一方實際贏了約 71%。跟最早只看國際賽的版本比，猜中的場數差不多，但<b>給的機率更準</b>：說 70～80% 的比賽實際贏約 84%，說 90% 以上的 11 場全部命中。不過「同等級賽區互打」（例如 LCK 對 LPL）只猜中約 59%，仍接近擲硬幣；不同賽區對戰的準度，則跟「直接猜中韓隊伍」一樣。勝率參考適合當作聊天話題，不適合拿來下注。</p>
+      <h2>比數機率</h2>
+      <p>Bo3、Bo5 的對戰頁會列出每種比數的機率。如果假設每一局各自獨立，會低估「一面倒」的情況：回測時 Bo5 實際有 44% 打成 3:0，獨立假設只估 32%。所以排比數時把單局勝率拉開一點（強隊更容易橫掃），再讓兩隊各自的比數加總，對齊上面的系列賽勝率。即使如此，最可能的比數在 Bo3 約 38%、Bo5 約 29% 會猜中，只能當參考。</p>
       <h2>晉級機率與預測成績</h2>
       <p>「機率」頁把本屆剩下的比賽用目前的實力分數模擬 2 萬次，算出每隊進八強、四強、決賽與奪冠的機率；已經打完的比賽直接用真實結果。瑞士輪抽籤用簡化規則（同戰績互抽、避免重複交手），實際規則更複雜，所以是近似值。</p>
       <p>「成績」頁公開每場比賽開打前的勝率：開打前每小時更新一次，開打後就凍結不再改動，打完直接對答案。這是檢驗模型最誠實的方式。</p>
@@ -415,6 +457,9 @@
         <div class="stat"><div class="big num">${hit}<span class="muted"> / ${done.length}</span></div><div class="lbl">猜中場數</div></div>
         <div class="stat"><div class="big num">${pct(hit / done.length)}%</div><div class="lbl">猜中率</div></div>
         <div class="stat"><div class="big num">${expect.toFixed(1)}</div><div class="lbl">模型自己預期會中幾場</div></div>
+        ${(() => { const sc = done.filter(([, r]) => r.scores); if (!sc.length) return "";
+          const h = sc.filter(([, r]) => r.scoreHit).length;
+          return `<div class="stat"><div class="big num">${h}<span class="muted"> / ${sc.length}</span></div><div class="lbl">比數猜中（Bo3、Bo5）</div></div>`; })()}
       </div>
       <p class="note">「預期會中幾場」是把每場賽前看好那一方的勝率加起來。實際猜中的場數跟它差不多，代表給的機率大致合理；差很多就代表模型這次失準。場數少的時候差距主要是運氣。</p>
       <div class="list">${done.slice().reverse().map(([m]) => matchRow(m)).join("")}</div>`
