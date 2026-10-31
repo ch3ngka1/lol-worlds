@@ -490,9 +490,9 @@
    "c1": "LOS",
    "c2": "LYON",
    "s1": 1,
-   "s2": 1,
-   "w": null,
-   "live": true
+   "s2": 2,
+   "w": 2,
+   "live": false
   },
   {
    "id": "Main-Event_Round-5_3",
