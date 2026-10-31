@@ -438,8 +438,8 @@
    "round": "Round 5",
    "time": "2026-10-31T17:00:00Z",
    "bo": 3,
-   "c1": "LOS",
-   "c2": "LYON",
+   "c1": "KC",
+   "c2": "MKOI",
    "s1": null,
    "s2": null,
    "w": null
@@ -450,8 +450,8 @@
    "round": "Round 5",
    "time": "2026-10-31T20:00:00Z",
    "bo": 3,
-   "c1": "KC",
-   "c2": "MKOI",
+   "c1": "LOS",
+   "c2": "LYON",
    "s1": null,
    "s2": null,
    "w": null
