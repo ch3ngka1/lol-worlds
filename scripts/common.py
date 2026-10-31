@@ -37,8 +37,18 @@ def series_result(m):
         w = None
     s1 = int(s1) if s1 not in (None, "") else None
     s2 = int(s2) if s2 not in (None, "") else None
+    try:
+        bo = int(m.get("BestOf") or 0)
+    except ValueError:
+        bo = 0
+    need = bo // 2 + 1 if bo else None
+    # 只有某一隊拿到足夠勝場（Bo3 要 2 勝、Bo5 要 3 勝）才算結束；
+    # Leaguepedia 在比賽進行中會先填目前比分（例如 1:0），不能當成已經分出勝負。
     if w is None and s1 is not None and s2 is not None and s1 != s2:
-        w = 1 if s1 > s2 else 2
+        if need is None or max(s1, s2) >= need:
+            w = 1 if s1 > s2 else 2
+    if w in (1, 2) and need and s1 is not None and s2 is not None and max(s1, s2) < need:
+        w = None   # 勝方欄位提前被填、但比分還不夠時，也視為進行中
     if w not in (1, 2):
         return None
     return s1, s2, w

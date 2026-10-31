@@ -268,3 +268,6 @@ a.team-link:hover b, a.code.team-link:hover { text-decoration: underline; }
 .score-dist li.top .lab, .score-dist li.actual .lab { color: var(--ink); }
 .score-dist li.actual { font-weight: 700; }
 .score-dist .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+
+.score.live small { color: var(--lpl); font-weight: 700; }
+.hero-score .live-tag { display: block; font: 700 12px/1.6 var(--font); color: var(--lpl); text-align: center; }

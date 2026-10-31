@@ -173,7 +173,9 @@
     const s1 = done ? (m.w === 1 ? "won" : "lost") : "", s2 = done ? (m.w === 2 ? "won" : "lost") : "";
     const score = done
       ? `<div class="score" aria-label="比分 ${m.s1} 比 ${m.s2}">${m.s1 ?? ""}<span class="vs"> : </span>${m.s2 ?? ""}<small>Bo${m.bo}・已結束</small></div>`
-      : `<div class="score"><span class="vs">vs</span><small>Bo${m.bo}</small></div>`;
+      : m.live
+        ? `<div class="score live" aria-label="進行中，目前 ${m.s1} 比 ${m.s2}">${m.s1 ?? 0}<span class="vs"> : </span>${m.s2 ?? 0}<small>Bo${m.bo}・進行中</small></div>`
+        : `<div class="score"><span class="vs">vs</span><small>Bo${m.bo}</small></div>`;
     let extra = "";
     const pr = predResult(m);
     if (pr) {
@@ -340,7 +342,7 @@
         <p class="hero-meta">${esc(roundLabel(m))}・Bo${m.bo}・${esc(dayLabel(m.time))} ${timeOf(m.time)}（台灣時間）</p>
         <div class="hero-teams">
           ${hero(a, 1)}
-          <div class="hero-score">${done ? `${m.s1}<span class="vs"> : </span>${m.s2}` : '<span class="vs">vs</span>'}</div>
+          <div class="hero-score">${done || m.live ? `${m.s1 ?? 0}<span class="vs"> : </span>${m.s2 ?? 0}` : '<span class="vs">vs</span>'}${m.live ? '<small class="live-tag">進行中</small>' : ""}</div>
           ${hero(b, 2)}
         </div>
         <h1 class="sr-only">${esc(a)} 對 ${esc(b)}</h1>

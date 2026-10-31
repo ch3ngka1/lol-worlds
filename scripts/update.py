@@ -42,6 +42,7 @@ def build_schedule(rows, name2code):
             "c1": c1, "c2": c2,
             "s1": r[0] if r else m.get("Team1Score"), "s2": r[1] if r else m.get("Team2Score"),
             "w": r[2] if r else None,
+            "live": (not r) and m.get("Team1Score") not in (None, "") and m.get("Team2Score") not in (None, ""),
         })
     return out
 
