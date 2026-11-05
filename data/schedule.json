@@ -528,10 +528,10 @@
    "bo": 5,
    "c1": "GEN",
    "c2": "LYON",
-   "s1": 2,
+   "s1": 3,
    "s2": 0,
-   "w": null,
-   "live": true
+   "w": 1,
+   "live": false
   },
   {
    "id": "Main-Event_Quarterfinals_3",
@@ -566,7 +566,7 @@
    "time": "2026-11-07T22:00:00Z",
    "bo": 5,
    "c1": "IG",
-   "c2": null,
+   "c2": "GEN",
    "s1": null,
    "s2": null,
    "w": null,
