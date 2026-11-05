@@ -541,10 +541,10 @@
    "bo": 5,
    "c1": "DK",
    "c2": "BLG",
-   "s1": null,
-   "s2": null,
+   "s1": 0,
+   "s2": 1,
    "w": null,
-   "live": false
+   "live": true
   },
   {
    "id": "Main-Event_Quarterfinals_4",
