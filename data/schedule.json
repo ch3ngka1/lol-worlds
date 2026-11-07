@@ -567,10 +567,10 @@
    "bo": 5,
    "c1": "IG",
    "c2": "GEN",
-   "s1": null,
-   "s2": null,
+   "s1": 0,
+   "s2": 1,
    "w": null,
-   "live": false
+   "live": true
   },
   {
    "id": "Main-Event_Semifinals_2",
