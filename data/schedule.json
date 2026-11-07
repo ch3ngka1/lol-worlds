@@ -555,9 +555,9 @@
    "c1": "KC",
    "c2": "T1",
    "s1": 1,
-   "s2": 2,
-   "w": null,
-   "live": true
+   "s2": 3,
+   "w": 2,
+   "live": false
   },
   {
    "id": "Main-Event_Semifinals_1",
@@ -579,7 +579,7 @@
    "time": "2026-11-08T22:00:00Z",
    "bo": 5,
    "c1": "BLG",
-   "c2": null,
+   "c2": "T1",
    "s1": null,
    "s2": null,
    "w": null,
