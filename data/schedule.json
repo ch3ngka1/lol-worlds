@@ -580,10 +580,10 @@
    "bo": 5,
    "c1": "BLG",
    "c2": "T1",
-   "s1": null,
-   "s2": null,
+   "s1": 1,
+   "s2": 0,
    "w": null,
-   "live": false
+   "live": true
   },
   {
    "id": "Main-Event_Finals_1",
