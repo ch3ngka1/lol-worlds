@@ -568,9 +568,9 @@
    "c1": "IG",
    "c2": "GEN",
    "s1": 0,
-   "s2": 2,
-   "w": null,
-   "live": true
+   "s2": 3,
+   "w": 2,
+   "live": false
   },
   {
    "id": "Main-Event_Semifinals_2",
