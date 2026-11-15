@@ -593,10 +593,10 @@
    "bo": 5,
    "c1": "BLG",
    "c2": "GEN",
-   "s1": 2,
+   "s1": 3,
    "s2": 1,
-   "w": null,
-   "live": true
+   "w": 1,
+   "live": false
   }
  ]
 }
